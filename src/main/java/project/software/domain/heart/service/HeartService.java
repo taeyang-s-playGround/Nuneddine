@@ -26,7 +26,6 @@ public class HeartService {
         }
         else {
             Shop shop = shopRepository.findShopById(shopId);
-
             heartRepository.save(
                 Heart.builder()
                     .user(user)

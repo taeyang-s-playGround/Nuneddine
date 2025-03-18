@@ -33,17 +33,14 @@ public class JwtTokenProvider {
 
     // JWT 토큰 생성
     public String createAccessToken(String accountId) {
-
         Claims claims = Jwts.claims().setSubject(accountId);
         Date now = new Date();
-
-        String accessToken = Jwts.builder()
+        return Jwts.builder()
             .setClaims(claims)
             .setIssuedAt(now)
             .setExpiration(new Date(now.getTime() + jwtProperties.getAccessExp() * 1000))
             .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
             .compact();
-        return accessToken;
     }
 
     public String createRefreshToken(String accountId) {
