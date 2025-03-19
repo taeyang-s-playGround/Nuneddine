@@ -16,10 +16,4 @@ public class RefreshToken{
 
     private String refreshToken;
 
-    private Long expiration;
-
-    public RefreshToken updateExpiration(Long expiration) {
-        this.expiration = expiration;
-        return this;
-    }
 }

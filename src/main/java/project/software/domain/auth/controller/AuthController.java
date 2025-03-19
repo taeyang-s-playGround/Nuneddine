@@ -21,8 +21,7 @@ import project.software.domain.auth.service.ReissueService;
 import project.software.domain.auth.service.SignInService;
 import project.software.domain.auth.service.SignUpGuestService;
 import project.software.domain.auth.service.SignUpService;
-import project.software.global.security.GuestTokenResponse;
-import project.software.global.security.TokenResponse;
+import project.software.global.security.jwt.TokenResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -48,7 +47,7 @@ public class AuthController {
 
     @PostMapping("/guest/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    public GuestTokenResponse guestSignUp(@RequestBody @Valid GuestSignUpRequest guestSignUpRequest) {
+    public String guestSignUp(@RequestBody @Valid GuestSignUpRequest guestSignUpRequest) {
         return signUpGuestService.execute(guestSignUpRequest);
     }
 
@@ -57,11 +56,13 @@ public class AuthController {
     public TokenResponse login(@RequestBody @Valid SignInRequest signInRequest) {
         return signInService.execute(signInRequest);
     }
-
+/*
     @PatchMapping("/token/reissue")
     public TokenResponse reissue(HttpServletRequest request) {
         return reissueService.execute(request);
     }
+
+ */
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/image")

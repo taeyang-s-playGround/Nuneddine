@@ -15,7 +15,7 @@ import project.software.domain.user.service.GetMyPageService;
 public class UserController {
     private final GetMyPageService getMyPageService;
 
-   @GetMapping("/my-page")
+    @GetMapping("/my-page")
     @ResponseStatus(HttpStatus.OK)
     public GetMyPageResponse getMyPage() {
         return getMyPageService.execute();

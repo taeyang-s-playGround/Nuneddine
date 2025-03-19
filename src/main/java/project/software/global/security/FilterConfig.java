@@ -1,4 +1,4 @@
-package project.software.global.config;
+package project.software.global.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,16 +13,16 @@ import project.software.global.security.jwt.JwtTokenProvider;
 @RequiredArgsConstructor
 public class FilterConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-    private final JwtTokenProvider jwtTokenProvider;
     private final ObjectMapper objectMapper;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public void configure(HttpSecurity http) {
+    public void configure(HttpSecurity builder) {
+        builder.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        builder.addFilterBefore(new ExceptionFilter(objectMapper), JwtTokenFilter.class);
+    }
 
-        JwtTokenFilter jwtTokenFilter = new JwtTokenFilter(jwtTokenProvider);
-        ExceptionFilter globalExceptionFilter = new ExceptionFilter(objectMapper);
-
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(globalExceptionFilter, JwtTokenFilter.class);
+    public HttpSecurity build(){
+        return getBuilder();
     }
 }

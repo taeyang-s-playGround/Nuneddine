@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import project.software.domain.auth.controller.dto.request.GuestSignUpRequest;
 import project.software.domain.user.domain.User;
 import project.software.domain.user.domain.repository.UserRepository;
-import project.software.global.security.GuestTokenResponse;
 
 import java.util.UUID;
 
@@ -17,7 +16,7 @@ public class SignUpGuestService {
 
     private final UserRepository userRepository;
 
-    public GuestTokenResponse execute(GuestSignUpRequest guestSignUpRequest) {
+    public String execute(GuestSignUpRequest guestSignUpRequest) {
 
         String customGuestId = UUID.randomUUID().toString();
 
@@ -28,6 +27,6 @@ public class SignUpGuestService {
                 .build()
         );
 
-        return new GuestTokenResponse(customGuestId);
+        return customGuestId;
     }
 }

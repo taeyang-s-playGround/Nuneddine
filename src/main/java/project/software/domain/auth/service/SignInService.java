@@ -9,8 +9,8 @@ import project.software.domain.auth.exception.PasswordMisMatchException;
 import project.software.domain.user.domain.User;
 import project.software.domain.user.domain.repository.UserRepository;
 import project.software.domain.user.exception.UserNotFoundException;
-import project.software.global.security.TokenResponse;
 import project.software.global.security.jwt.JwtTokenProvider;
+import project.software.global.security.jwt.TokenResponse;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +28,8 @@ public class SignInService {
             throw PasswordMisMatchException.EXCEPTION;
         }
 
-        return jwtProvider.createToken(request.getAccountId());
+        String token = jwtProvider.createAccessToken(request.getAccountId());
+
+        return new TokenResponse(token);
     }
 }
