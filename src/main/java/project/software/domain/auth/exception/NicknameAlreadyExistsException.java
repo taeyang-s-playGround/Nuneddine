@@ -1,10 +1,10 @@
 package project.software.domain.auth.exception;
 
-import project.software.global.error.exception.GlobalException;
-import project.software.global.error.exception.ErrorCode;
+import project.software.global.security.config.error.exception.CustomException;
+import project.software.global.security.config.error.exception.ErrorCode;
 
-public class NicknameAlreadyExistsException extends GlobalException {
-    public static final GlobalException EXCEPTION = new NicknameAlreadyExistsException();
+public class NicknameAlreadyExistsException extends CustomException {
+    public static final CustomException EXCEPTION = new NicknameAlreadyExistsException();
 
     public NicknameAlreadyExistsException() {
         super(ErrorCode.NICKNAME_ALREADY_EXISTS);

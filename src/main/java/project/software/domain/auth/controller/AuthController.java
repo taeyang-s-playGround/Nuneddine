@@ -2,7 +2,6 @@ package project.software.domain.auth.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +14,14 @@ import project.software.domain.auth.controller.dto.request.response.ImageUrlList
 import project.software.domain.auth.controller.dto.request.response.ImageUrlResponse;
 import project.software.domain.auth.controller.dto.request.SignInRequest;
 import project.software.domain.auth.controller.dto.request.SignUpRequest;
+import project.software.domain.auth.controller.dto.request.response.TokenResponse;
 import project.software.domain.auth.service.ImageUploadService;
 import project.software.domain.auth.service.ImagesUploadService;
 import project.software.domain.auth.service.ReissueService;
 import project.software.domain.auth.service.SignInService;
 import project.software.domain.auth.service.SignUpGuestService;
 import project.software.domain.auth.service.SignUpService;
-import project.software.global.security.jwt.TokenResponse;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 

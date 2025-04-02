@@ -1,13 +1,12 @@
-package project.software.global.security.jwt;
+package project.software.domain.auth.controller.dto.request.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 @AllArgsConstructor
 public class TokenResponse {
-
     private String accessToken;
-
 }

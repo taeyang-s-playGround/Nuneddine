@@ -5,12 +5,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.software.domain.auth.controller.dto.request.SignInRequest;
+import project.software.domain.auth.controller.dto.request.response.TokenResponse;
 import project.software.domain.auth.exception.PasswordMisMatchException;
 import project.software.domain.user.domain.User;
 import project.software.domain.user.domain.repository.UserRepository;
 import project.software.domain.user.exception.UserNotFoundException;
-import project.software.global.security.jwt.JwtTokenProvider;
-import project.software.global.security.jwt.TokenResponse;
+import project.software.global.security.security.jwt.JwtTokenProvider;
 
 @Service
 @RequiredArgsConstructor

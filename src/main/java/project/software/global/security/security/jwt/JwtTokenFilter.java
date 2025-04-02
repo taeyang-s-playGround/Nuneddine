@@ -1,4 +1,4 @@
-package project.software.global.security.jwt;
+package project.software.global.security.security.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -11,19 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtProvider;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 
-        String parseToken = jwtTokenProvider.resolveToken(request);
-        if(parseToken != null) {
-            Authentication authentication = jwtTokenProvider.getAuthentication(parseToken);
+        String token = jwtProvider.resolveToken(request);
+
+        if (token != null) {
+            Authentication authentication = jwtProvider.authorization(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);

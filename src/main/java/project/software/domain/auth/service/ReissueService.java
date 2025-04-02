@@ -2,11 +2,7 @@ package project.software.domain.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import project.software.global.security.jwt.JwtTokenProvider;
-import project.software.global.security.jwt.TokenResponse;
-
-import javax.servlet.http.HttpServletRequest;
+import project.software.global.security.security.jwt.JwtTokenProvider;
 
 @Service
 @RequiredArgsConstructor
