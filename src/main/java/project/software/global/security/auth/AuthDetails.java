@@ -1,17 +1,20 @@
 package project.software.global.security.auth;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import project.software.domain.user.domain.User;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthDetails implements UserDetails {
 
-    private final String accountId;
+    private final User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -25,26 +28,26 @@ public class AuthDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return accountId;
+        return user.getAccountId();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
 }

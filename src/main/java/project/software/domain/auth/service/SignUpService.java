@@ -1,5 +1,6 @@
 package project.software.domain.auth.service;
 
+import antlr.Token;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,8 @@ import project.software.domain.auth.controller.dto.request.SignUpRequest;
 import project.software.domain.user.domain.User;
 import project.software.domain.user.domain.repository.UserRepository;
 import project.software.domain.user.exception.UserAlreadyExistsException;
-import project.software.global.security.TokenResponse;
 import project.software.global.security.jwt.JwtTokenProvider;
-
-import java.util.UUID;
+import project.software.global.security.jwt.TokenResponse;
 
 @RequiredArgsConstructor
 @Service
@@ -36,6 +35,8 @@ public class SignUpService {
                 .build()
         );
 
-        return jwtProvider.createToken(signUpRequest.getAccountId());
+        String token = jwtProvider.createAccessToken(signUpRequest.getAccountId());
+
+        return new TokenResponse(token);
     }
 }

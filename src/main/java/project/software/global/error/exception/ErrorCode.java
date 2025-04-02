@@ -37,6 +37,11 @@ public enum ErrorCode {
     EXPIRED_TOKEN(403, "Expired token"),
     INVALID_TOKEN(403, "Invalid token"),
 
+    NOT_SUPPORTED_METHOD_ERROR(405, "Not Supported Method"),
+    NOT_SUPPORTED_URI_ERROR(405, "Not Supported URI"),
+    UNEXPECTED_SERVER_ERROR(500, "Unexpected Server Error"),
+    VALIDATION_ERROR(400, "Validation Error"),
+
     JwtSigningException(403,"JWT Signing Exception");
 
     private final int status;

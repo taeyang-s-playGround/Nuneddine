@@ -1,10 +1,11 @@
-package project.software.global.security;
+package project.software.global.security.jwt;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
+@AllArgsConstructor
 public class TokenResponse {
 
     private String accessToken;
