@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${URL:jdbc:mysql://localhost:3306/software}
-    username: root
-    password: "070211"
+    url: ${DB_URL:jdbc:mysql://localhost:3306/software}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:071219}
 
   jpa:
     hibernate:
@@ -45,19 +45,9 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: ${ACCESS-KEY:d}
-      secretKey: ${SECRET-KEY:d}
+      accessKey: ${AWS_ACCESS_KEY:d}
+      secretKey: ${AWS_ACCESS_KEY:d}
     s3:
       bucket: ${BUCKET:d}
     region:
       static: ${STATIC:d}
-  stack:
-    auto: false
-    springdoc:
-      api-docs:
-        path: ${SWAGGER_PATH}:d
-      swagger-ui:
-        path: ${SWAGGER_UI_PATH:d}
-        display-request-duration: true
-      cache:
-        disabled: true
