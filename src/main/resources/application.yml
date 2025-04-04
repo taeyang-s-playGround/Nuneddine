@@ -1,20 +1,21 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${DB_URL:jdbc:mysql://localhost:3306/software}
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:071219}
+    password: ${DB_PASSWORD:070211}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         format_sql: true
         show_sql: true
-        database-platform: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
+        defer-datasource-initialization: true
 
   servlet:
     multipart:
