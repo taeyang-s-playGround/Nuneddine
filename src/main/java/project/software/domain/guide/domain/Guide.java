@@ -1,4 +1,4 @@
-package project.software.domain.honey_tip.domain;
+package project.software.domain.guide.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
-@Entity
+@Entity(name = "tbl_guide")
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class HoneyTip {
+public class Guide {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
