@@ -12,16 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
-@Entity
+@Entity(name = "tbl_user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(columnDefinition = "VARCHAR(36)")
-    private String guestId;
 
     @Column(columnDefinition = "VARCHAR(60)")
     private String accountId;
@@ -35,9 +32,8 @@ public class User {
     private String deviceToken;
 
     @Builder
-    public User(Long id, String guestId, String accountId, String name, String password, String deviceToken) {
+    public User(Long id, String accountId, String name, String password, String deviceToken) {
         this.id = id;
-        this.guestId = guestId;
         this.accountId = accountId;
         this.name = name;
         this.password = password;

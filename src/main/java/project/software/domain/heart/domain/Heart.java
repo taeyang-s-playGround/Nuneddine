@@ -16,7 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Getter
-@Entity
+@Entity(name = "tbl_heart")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Heart {
 
