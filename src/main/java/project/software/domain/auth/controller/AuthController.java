@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import project.software.domain.auth.controller.dto.request.GuestSignUpRequest;
 import project.software.domain.auth.controller.dto.request.response.ImageUrlListResponse;
 import project.software.domain.auth.controller.dto.request.response.ImageUrlResponse;
 import project.software.domain.auth.controller.dto.request.SignInRequest;
@@ -17,9 +16,7 @@ import project.software.domain.auth.controller.dto.request.SignUpRequest;
 import project.software.domain.auth.controller.dto.request.response.TokenResponse;
 import project.software.domain.auth.service.ImageUploadService;
 import project.software.domain.auth.service.ImagesUploadService;
-import project.software.domain.auth.service.ReissueService;
 import project.software.domain.auth.service.SignInService;
-import project.software.domain.auth.service.SignUpGuestService;
 import project.software.domain.auth.service.SignUpService;
 
 import javax.validation.Valid;
@@ -31,9 +28,7 @@ import java.util.List;
 public class AuthController {
 
     private final SignUpService signUpService;
-    private final SignUpGuestService signUpGuestService;
     private final SignInService signInService;
-    private final ReissueService reissueService;
     private final ImageUploadService imageUploadService;
     private final ImagesUploadService imagesUploadService;
 
@@ -43,24 +38,11 @@ public class AuthController {
         return signUpService.execute(signUpRequest);
     }
 
-    @PostMapping("/guest/signup")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String guestSignUp(@RequestBody @Valid GuestSignUpRequest guestSignUpRequest) {
-        return signUpGuestService.execute(guestSignUpRequest);
-    }
-
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public TokenResponse login(@RequestBody @Valid SignInRequest signInRequest) {
         return signInService.execute(signInRequest);
     }
-/*
-    @PatchMapping("/token/reissue")
-    public TokenResponse reissue(HttpServletRequest request) {
-        return reissueService.execute(request);
-    }
-
- */
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/image")

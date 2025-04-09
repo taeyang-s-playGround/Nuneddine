@@ -14,7 +14,7 @@ public class JwtProperties {
 
     public static final String header = "Authorization";
     public static final String prefix = "Bearer";
-    public static final String secretKey = "dfhasjkdfhayffhdtyhdfkjfvfddkvnvssdvnknkknlnkdkmnlvknllnkknlvfdhydshghjkdfaskverafter";
+    public static final String secretKey = "123asdfghwerthcvbneoihhgf";
     public static final long accessExp = 10000L;
     public static final long refreshExp = 604800;
 

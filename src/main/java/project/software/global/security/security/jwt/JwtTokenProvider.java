@@ -13,7 +13,6 @@ import project.software.global.security.security.jwt.exception.InvalidJwtExcepti
 import project.software.global.security.security.principle.AuthDetailsService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Base64;
 import java.util.Date;
 
 @Component
@@ -32,11 +31,12 @@ public class JwtTokenProvider {
     private String createToken(String accountId, String type, Long time) {
         Date now = new Date();
         return Jwts.builder().signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
-                .setSubject(accountId)
-                .setHeaderParam("typ", type)
-                .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + time))
-                .compact();
+            .setSubject(accountId)
+            .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey()) //수정함
+            .setHeaderParam("typ", type)
+            .setIssuedAt(now)
+            .setExpiration(new Date(now.getTime() + time))
+            .compact();
     }
 
     public String resolveToken(HttpServletRequest request) {
@@ -62,8 +62,8 @@ public class JwtTokenProvider {
 
     private Claims getTokenBody(String token) {
         try {
-            byte[] secretKeyBytes = Base64.getDecoder().decode(jwtProperties.getSecretKey());
-            return Jwts.parser().setSigningKey(secretKeyBytes)
+            return Jwts.parser()
+                .setSigningKey(jwtProperties.getSecretKey())
                 .parseClaimsJws(token).getBody();
         } catch (ExpiredJwtException e) {
             throw ExpiredJwtException.EXCEPTION;
@@ -71,5 +71,4 @@ public class JwtTokenProvider {
             throw InvalidJwtException.EXCEPTION;
         }
     }
-
 }
