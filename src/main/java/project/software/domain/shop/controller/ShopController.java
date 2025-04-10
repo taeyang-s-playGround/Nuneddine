@@ -11,7 +11,7 @@ import project.software.domain.shop.service.GetAllShopService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/shop")
+@RequestMapping("/shops")
 public class ShopController {
 
     private final GetAllShopService getAllShopService;
