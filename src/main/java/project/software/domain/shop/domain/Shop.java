@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.software.domain.shop.domain.type.GlassesType;
 import project.software.domain.shop.domain.type.Type;
+import project.software.domain.shop.domain.type.GlassesType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,15 +34,12 @@ public class Shop {
     private String description;
 
     @Column(nullable = true)
-    private Integer discountRate;
-
-    @Column(nullable = true)
     private Long price;
 
     @Column(nullable = true)
-    private GlassesType glassesType;
+    private Type type;
 
     @Column(nullable = true)
-    private Type type;
+    private GlassesType glassesType;
 
 }
