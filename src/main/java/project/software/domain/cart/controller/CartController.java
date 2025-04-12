@@ -23,5 +23,4 @@ public class CartController {
     public AllCartResponse getAllCart() {
         return getAllCartService.execute();
     }
-
 }

@@ -23,6 +23,11 @@ public class GetAllCartService {
 
         User user = userFacade.GetCurrentUser();
         List<Cart> carts = cartRepository.findAllByUserId(user.getId());
-        return AllCartResponse.from(carts);
+
+        Long totalPrice = carts.stream()
+            .mapToLong(cart -> cart.getShop().getPrice() * cart.getCount())
+            .sum();
+
+        return AllCartResponse.from(carts, totalPrice);
     }
 }

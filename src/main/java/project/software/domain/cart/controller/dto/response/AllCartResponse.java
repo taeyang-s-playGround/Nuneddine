@@ -14,8 +14,9 @@ import java.util.List;
 public class AllCartResponse {
 
     private final List<CartResponse> cartList;
+    private final Long totalPrice;
 
-    public static AllCartResponse from(List<Cart> carts) {
+    public static AllCartResponse from(List<Cart> carts, Long  totalPrice) {
         return new AllCartResponse(
             carts.stream()
                 .map(cart -> CartResponse.builder()
@@ -28,7 +29,8 @@ public class AllCartResponse {
                     .glassesType(cart.getShop().getGlassesType())
                     .count(cart.getCount())
                     .build()
-                ).toList()
+                ).toList(),
+            totalPrice
         );
     }
 
