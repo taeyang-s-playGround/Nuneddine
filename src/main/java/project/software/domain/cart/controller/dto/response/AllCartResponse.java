@@ -16,7 +16,7 @@ public class AllCartResponse {
     private final List<CartResponse> cartList;
     private final Long totalPrice;
 
-    public static AllCartResponse from(List<Cart> carts, Long  totalPrice) {
+    public static AllCartResponse from(List<Cart> carts, Long totalPrice) {
         return new AllCartResponse(
             carts.stream()
                 .map(cart -> CartResponse.builder()
