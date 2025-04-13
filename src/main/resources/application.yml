@@ -52,3 +52,6 @@ cloud:
       bucket: ${BUCKET:d}
     region:
       static: ${STATIC:d}
+
+fcm:
+  path: ${FCM_PATH:d}
