@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "896676980742",
+    "project_id": "nuneddine-5efa4",
+    "storage_bucket": "nuneddine-5efa4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896676980742:android:88ed83405f95a1f233bb87",
+        "android_client_info": {
+          "package_name": "com.company.nuneddine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqziUoQ-3TWWmS_pcGq4mcgIuVbIL5RvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

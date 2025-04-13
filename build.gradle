@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id("org.springframework.boot") version "2.7.16"
 	id("io.spring.dependency-management") version "1.1.4"
+	id 'com.google.gms.google-services' version '4.4.2' apply false
 }
 
 group = 'project'
@@ -32,8 +33,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-	//jwt
+	//fcm
+	implementation platform('com.google.firebase:firebase-bom:33.12.0')
+	implementation 'com.google.firebase:firebase-analytics'
 
+	//jwt
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
