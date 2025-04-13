@@ -1,5 +1,6 @@
 package project.software.domain.notification.controller;
 
+import com.google.firebase.messaging.FirebaseMessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ public class NotificationController {
     private final SetNotificationService setNotificationService;
 
     @PostMapping
-    private void setSetNotification() {
+    private void setSetNotification() throws FirebaseMessagingException {
         setNotificationService.execute();
     }
 }
