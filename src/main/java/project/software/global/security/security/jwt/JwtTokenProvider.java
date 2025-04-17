@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import project.software.global.security.security.principle.AuthDetailsService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
@@ -30,9 +32,9 @@ public class JwtTokenProvider {
 
     private String createToken(String accountId, String type, Long time) {
         Date now = new Date();
-        return Jwts.builder().signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+        return Jwts.builder()
+            .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
             .setSubject(accountId)
-            .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey()) //수정함
             .setHeaderParam("typ", type)
             .setIssuedAt(now)
             .setExpiration(new Date(now.getTime() + time))
@@ -68,6 +70,7 @@ public class JwtTokenProvider {
         } catch (ExpiredJwtException e) {
             throw ExpiredJwtException.EXCEPTION;
         } catch (Exception e) {
+            log.error("JWT parse error: {}", e.getMessage(), e);
             throw InvalidJwtException.EXCEPTION;
         }
     }
