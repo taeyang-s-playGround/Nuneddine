@@ -31,12 +31,19 @@ public class User {
 
     private String deviceToken;
 
+    private String address;
+
     @Builder
-    public User(Long id, String accountId, String name, String password, String deviceToken) {
+    public User(Long id, String accountId, String name, String password, String deviceToken, String address) {
         this.id = id;
         this.accountId = accountId;
         this.name = name;
         this.password = password;
         this.deviceToken = deviceToken;
+        this.address = address;
+    }
+
+    public void updateAddress(String address) {
+        this.address = address;
     }
 }
