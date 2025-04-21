@@ -11,10 +11,12 @@ public class GetMyPageResponse {
     private Long userId;
     private String name;
     private String accountId;
+    private String address;
 
     public GetMyPageResponse(User user) {
         userId = user.getId();
         name = user.getName();
         accountId = user.getAccountId();
+        address = user.getAddress();
     }
 }

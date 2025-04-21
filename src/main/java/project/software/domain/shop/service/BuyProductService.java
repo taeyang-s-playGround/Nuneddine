@@ -24,9 +24,6 @@ public class BuyProductService {
     public void execute() {
         User user = userFacade.GetCurrentUser();
 
-        //cart에 있는 것들을 전부 delete하고
-        //purchaseHistory에 그대로 만들어줌
-
         List<Cart> carts = cartRepository.findAllByUserId(user.getId());
         carts.forEach(cart -> {
             cartRepository.deleteById(cart.getId());
