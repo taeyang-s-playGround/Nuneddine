@@ -33,5 +33,4 @@ public class ShopController {
     public void BuyProduct() {
         buyProductService.execute();
     }
-
 }

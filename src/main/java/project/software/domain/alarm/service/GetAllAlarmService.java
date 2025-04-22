@@ -2,28 +2,24 @@ package project.software.domain.alarm.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import project.software.domain.alarm.controller.dto.request.SetAlarmRequest;
+import project.software.domain.alarm.controller.dto.response.AlarmListResponse;
 import project.software.domain.alarm.domain.Alarm;
 import project.software.domain.alarm.domain.repository.AlarmRepository;
 import project.software.domain.auth.facade.UserFacade;
 import project.software.domain.user.domain.User;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class SetAlarmService {
-
-    private final AlarmRepository alarmRepository;
+public class GetAllAlarmService {
     private final UserFacade userFacade;
+    private final AlarmRepository alarmRepository;
 
-    public void execute(SetAlarmRequest request) {
+    public AlarmListResponse execute() {
         User user = userFacade.GetCurrentUser();
+        List<Alarm> alarmList = alarmRepository.findAllByUserId(user.getId());
 
-        alarmRepository.save(Alarm.builder()
-            .name(request.getName())
-            .startTime(request.getStartTime())
-            .endTime(request.getEndTime())
-            .user(user)
-            .build()
-        );
+        return AlarmListResponse.from(alarmList);
     }
 }

@@ -32,8 +32,13 @@ public class Alarm {
 
     private String name;
 
+    private LocalDateTime startTime;
+
     private LocalDateTime endTime;
 
-    private LocalDateTime starTime;
-
+    public void updateAlarm(String name, LocalDateTime startTime, LocalDateTime endTime) {
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 }
