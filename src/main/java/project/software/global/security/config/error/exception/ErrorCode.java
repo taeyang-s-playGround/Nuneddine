@@ -23,7 +23,6 @@ public enum ErrorCode {
     // 게시글 관련 오류
     POST_NOT_FOUND(HttpStatus.NOT_FOUND, "Post Not Found"),
     CANNOT_MODIFY_POST(HttpStatus.FORBIDDEN, "Cannot Modify Post"),
-    USER_ALREADY_EXISTS(HttpStatus.CONFLICT, "User already exists"),
     ALARM_NOT_FOUND(HttpStatus.NOT_FOUND, "Alarm Not Found"),
 
     // 파일 업로드 관련 오류

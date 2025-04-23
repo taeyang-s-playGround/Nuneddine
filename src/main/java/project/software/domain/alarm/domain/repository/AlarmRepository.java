@@ -10,8 +10,6 @@ import java.util.Optional;
 @Repository
 public interface AlarmRepository extends JpaRepository<Alarm, Long> {
 
-    void updateAlarm(Alarm alarm);
-
     List<Alarm> findAllByUserId(Long userId);
 
 }

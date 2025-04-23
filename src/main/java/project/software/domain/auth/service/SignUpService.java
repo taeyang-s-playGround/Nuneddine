@@ -31,7 +31,6 @@ public class SignUpService {
                 .name(signUpRequest.getName())
                 .password(passwordEncoder.encode(signUpRequest.getPassword()))
                 .deviceToken(signUpRequest.getDeviceToken())
-                .address(null)
                 .build()
         );
 

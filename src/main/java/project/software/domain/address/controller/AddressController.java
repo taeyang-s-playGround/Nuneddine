@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/address")
 public class AddressController {
 
-    private final SetAddressService setAddressService;
-
+    //private final SetAddressService setAddressService;
+/*
     @PostMapping
     public void setAddress(@RequestBody SetAddressRequest request) {
         setAddressService.execute(request);
     }
+
+ */
 }
