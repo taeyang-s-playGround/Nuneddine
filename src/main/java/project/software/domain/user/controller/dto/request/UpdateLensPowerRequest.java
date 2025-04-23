@@ -2,11 +2,10 @@ package project.software.domain.user.controller.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Address;
 
 @NoArgsConstructor
 @Getter
-public class UpdateAddressRequest {
+public class UpdateLensPowerRequest {
 
-    private String address;
+    private Long lensPower;
 }

@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import project.software.domain.user.controller.dto.request.UpdateAddressRequest;
+import project.software.domain.user.controller.dto.request.UpdateLensPowerRequest;
+import project.software.domain.user.controller.dto.response.GetMyLensPowerResponse;
 import project.software.domain.user.controller.dto.response.GetMyPageResponse;
-import project.software.domain.user.domain.repository.UserRepository;
+import project.software.domain.user.service.GetMyLensPowerService;
 import project.software.domain.user.service.GetMyPageService;
-import project.software.domain.user.service.UpdateMyAddressService;
+import project.software.domain.user.service.UpdateMyLensPowerService;
 
 import javax.validation.Valid;
 
@@ -21,7 +22,8 @@ import javax.validation.Valid;
 @RequestMapping("/users")
 public class UserController {
     private final GetMyPageService getMyPageService;
-    private final UpdateMyAddressService updateMyAddressService;
+    private final UpdateMyLensPowerService updateMyLensPowerService;
+    private final GetMyLensPowerService getMyLensPowerService;
 
     @GetMapping("/my-page")
     @ResponseStatus(HttpStatus.OK)
@@ -29,9 +31,15 @@ public class UserController {
         return getMyPageService.execute();
     }
 
-    @PatchMapping
+    @PatchMapping("/lens-power")
     @ResponseStatus(HttpStatus.OK)
-    public void updateAddress(@RequestBody @Valid UpdateAddressRequest request) {
-        updateMyAddressService.execute(request);
+    public void updateLensPower(@RequestBody @Valid UpdateLensPowerRequest request) {
+        updateMyLensPowerService.execute(request);
+    }
+
+    @GetMapping("/lens-power")
+    @ResponseStatus(HttpStatus.OK)
+    public GetMyLensPowerResponse getMyLensPower() {
+        return getMyLensPowerService.execute();
     }
 }
