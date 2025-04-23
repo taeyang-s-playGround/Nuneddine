@@ -31,13 +31,13 @@ public class UserController {
         return getMyPageService.execute();
     }
 
-    @PatchMapping("/lens-power")
+    @PatchMapping("/lens")
     @ResponseStatus(HttpStatus.OK)
     public void updateLensPower(@RequestBody @Valid UpdateLensPowerRequest request) {
         updateMyLensPowerService.execute(request);
     }
 
-    @GetMapping("/lens-power")
+    @GetMapping("/lens")
     @ResponseStatus(HttpStatus.OK)
     public GetMyLensPowerResponse getMyLensPower() {
         return getMyLensPowerService.execute();

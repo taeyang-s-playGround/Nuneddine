@@ -7,7 +7,7 @@ import project.software.domain.user.domain.User;
 @Getter
 @AllArgsConstructor
 public class GetMyLensPowerResponse {
-    private Long lensPower;
+    private Float lensPower;
 
     public GetMyLensPowerResponse(User user) {
         lensPower = user.getLensPower();

@@ -31,10 +31,10 @@ public class User {
 
     private String deviceToken;
 
-    private Long lensPower;
+    private Float lensPower;
 
     @Builder
-    public User(Long id, String accountId, String name, String password, String deviceToken, Long lensPower) {
+    public User(Long id, String accountId, String name, String password, String deviceToken, Float lensPower) {
         this.id = id;
         this.accountId = accountId;
         this.name = name;
@@ -43,7 +43,7 @@ public class User {
         this.lensPower = lensPower;
     }
 
-    public void updateLensPower(Long address) {
-        this.lensPower = address;
+    public void updateLensPower(Float lensPower) {
+        this.lensPower = lensPower;
     }
 }
