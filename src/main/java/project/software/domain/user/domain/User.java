@@ -31,8 +31,7 @@ public class User {
 
     private String deviceToken;
 
-    @Column(columnDefinition = "FLOAT DEFAULT 1")
-    private Float lensPower;
+    private Float lensPower = 1.0f;
 
     @Builder
     public User(Long id, String accountId, String name, String password, String deviceToken, Float lensPower) {
