@@ -14,7 +14,7 @@ import project.software.domain.user.domain.repository.UserRepository;
 public class UpdateMyLensPowerService {
 
     public final UserRepository userRepository;
-    public UserFacade userFacade;
+    public final UserFacade userFacade;
 
     public void execute(UpdateLensPowerRequest request) {
     User user = userFacade.GetCurrentUser();
