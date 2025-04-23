@@ -31,6 +31,7 @@ public class User {
 
     private String deviceToken;
 
+    @Column(columnDefinition = "FLOAT DEFAULT 1")
     private Float lensPower;
 
     @Builder
