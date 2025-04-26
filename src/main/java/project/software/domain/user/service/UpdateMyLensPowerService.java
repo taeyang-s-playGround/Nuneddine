@@ -19,7 +19,7 @@ public class UpdateMyLensPowerService {
     public void execute(UpdateLensPowerRequest request) {
     User user = userFacade.GetCurrentUser();
 
-        user.updateLensPower(request.getLensPower());
+        user.updateLensPower(request.getLeftLensPower(), request.getRightLensPower());
         userRepository.save(user);
     }
 }

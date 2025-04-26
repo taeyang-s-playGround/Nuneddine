@@ -7,5 +7,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UpdateLensPowerRequest {
 
-    private Float lensPower;
+    private Float leftLensPower;
+
+    private Float rightLensPower;
+
 }

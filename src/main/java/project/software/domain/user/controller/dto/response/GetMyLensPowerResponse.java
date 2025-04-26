@@ -7,9 +7,12 @@ import project.software.domain.user.domain.User;
 @Getter
 @AllArgsConstructor
 public class GetMyLensPowerResponse {
-    private Float lensPower;
+    private Float leftLensPower;
+    private Float rightLensPower;
 
     public GetMyLensPowerResponse(User user) {
-        lensPower = user.getLensPower();
+        leftLensPower = user.getLeftLensPower();
+        rightLensPower = user.getRightLensPower();
+
     }
 }

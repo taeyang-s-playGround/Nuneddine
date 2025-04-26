@@ -31,19 +31,24 @@ public class User {
 
     private String deviceToken;
 
-    private Float lensPower = 1.0f;
+    private Float leftLensPower = 1.0f;
+
+    private Float rightLensPower = 1.0f;
+
 
     @Builder
-    public User(Long id, String accountId, String name, String password, String deviceToken, Float lensPower) {
+    public User(Long id, String accountId, String name, String password, String deviceToken, Float leftLensPower, Float rightLensPower) {
         this.id = id;
         this.accountId = accountId;
         this.name = name;
         this.password = password;
         this.deviceToken = deviceToken;
-        this.lensPower = lensPower;
+        this.leftLensPower = leftLensPower;
+        this.rightLensPower = rightLensPower;
     }
 
-    public void updateLensPower(Float lensPower) {
-        this.lensPower = lensPower;
+    public void updateLensPower(Float leftLensPower, Float rightLensPower) {
+        this.rightLensPower = rightLensPower;
+        this.leftLensPower = leftLensPower;
     }
 }
