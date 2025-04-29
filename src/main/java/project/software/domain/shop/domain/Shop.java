@@ -9,6 +9,8 @@ import project.software.domain.shop.domain.type.GlassesType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,9 +39,11 @@ public class Shop {
     private Long price;
 
     @Column(nullable = true)
+    @Enumerated(EnumType.STRING)
     private Type type;
 
     @Column(nullable = true)
+    @Enumerated(EnumType.STRING)
     private GlassesType glassesType;
 
 }

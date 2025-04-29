@@ -1,6 +1,5 @@
 package project.software.domain.heart.controller;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +9,7 @@ import project.software.domain.heart.service.HeartService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/heart")
+@RequestMapping("/hearts")
 public class HeartController {
     private final HeartService heartService;
 
