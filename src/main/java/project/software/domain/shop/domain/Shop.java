@@ -38,11 +38,11 @@ public class Shop {
     @Column(nullable = true)
     private Long price;
 
-    @Column(nullable = true)
+    @Column(columnDefinition = "VARCHAR(8)", nullable = true)
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @Column(nullable = true)
+    @Column(columnDefinition = "VARCHAR(7)", nullable = true)
     @Enumerated(EnumType.STRING)
     private GlassesType glassesType;
 
