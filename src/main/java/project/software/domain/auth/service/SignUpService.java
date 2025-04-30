@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.software.domain.address.domain.Address;
+import project.software.domain.address.domain.repository.AddressRepository;
 import project.software.domain.auth.controller.dto.request.SignUpRequest;
 import project.software.domain.auth.controller.dto.request.response.TokenResponse;
 import project.software.domain.user.domain.User;
@@ -19,13 +21,14 @@ public class SignUpService {
     private final JwtTokenProvider jwtProvider;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AddressRepository addressRepository;
 
     public TokenResponse execute(SignUpRequest signUpRequest) {
         if (userRepository.existsByAccountId(signUpRequest.getAccountId())) {
             throw UserAlreadyExistsException.EXCEPTION;
         }
 
-        userRepository.save(
+        User user = userRepository.save(
             User.builder()
                 .accountId(signUpRequest.getAccountId())
                 .name(signUpRequest.getName())
@@ -33,6 +36,13 @@ public class SignUpService {
                 .deviceToken(signUpRequest.getDeviceToken())
                 .leftLensPower(1.0f)
                 .rightLensPower(1.0f)
+                .build()
+        );
+
+        addressRepository.save(
+            Address.builder()
+                .user(user)
+                .address("default address")
                 .build()
         );
 

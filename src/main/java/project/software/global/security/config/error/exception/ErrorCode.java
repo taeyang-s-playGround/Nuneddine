@@ -15,6 +15,7 @@ public enum ErrorCode {
 
     // 사용자 인증 관련 오류
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "User Not Found"),
+    ADDRESS_NOT_FOUND(HttpStatus.NOT_FOUND, "Address Not Found"),
     PASSWORD_MISMATCH(HttpStatus.UNAUTHORIZED, "Password Mismatch"),
     EXPIRED_TOKEN(HttpStatus.FORBIDDEN, "Expired token"),
     INVALID_TOKEN(HttpStatus.FORBIDDEN, "Invalid token"),
