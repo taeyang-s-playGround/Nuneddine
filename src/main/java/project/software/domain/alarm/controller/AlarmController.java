@@ -44,9 +44,9 @@ public class AlarmController {
         return getAllAlarmService.execute();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{alarm-id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAlarm(Long alarmId) {
+    public void deleteAlarm(@PathVariable("alarm-id") Long alarmId) {
         deleteAlarmService.execute(alarmId);
     }
 
