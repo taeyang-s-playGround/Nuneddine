@@ -8,6 +8,7 @@ import project.software.domain.heart.domain.Heart;
 import project.software.domain.heart.domain.repository.HeartRepository;
 import project.software.domain.shop.domain.Shop;
 import project.software.domain.shop.domain.repository.ShopRepository;
+import project.software.domain.shop.exception.ShopNotFoundException;
 import project.software.domain.user.domain.User;
 import project.software.domain.user.exception.UserNotFoundException;
 
@@ -25,7 +26,7 @@ public class HeartService {
         User user = userFacade.GetCurrentUser();
 
         Shop shop = shopRepository.findById(shopId)
-            .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+            .orElseThrow(() -> ShopNotFoundException.EXCEPTION);
 
         if (heartRepository.existsByUserIdAndShopId(user.getId(), shopId)) {
             heartRepository.deleteByUserIdAndShopId(user.getId(), shopId);

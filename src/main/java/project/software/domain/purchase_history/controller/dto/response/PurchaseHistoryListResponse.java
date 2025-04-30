@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PurchaseHistoryListResponse {
 
-    private final List<PurchaseHistoryResponse> cartList;
+    private final List<PurchaseHistoryResponse> purchaseHistoryList;
 
     public static PurchaseHistoryListResponse from(List<PurchaseHistory> purchaseHistoryList) {
         return new PurchaseHistoryListResponse(
