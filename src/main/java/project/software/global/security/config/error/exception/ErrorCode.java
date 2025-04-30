@@ -21,7 +21,7 @@ public enum ErrorCode {
     JwtSigningException(HttpStatus.FORBIDDEN, "JWT Signing Exception"),
 
     // 게시글 관련 오류
-    POST_NOT_FOUND(HttpStatus.NOT_FOUND, "Post Not Found"),
+    SHOP_NOT_FOUND(HttpStatus.NOT_FOUND, "Shop Not Found"),
     CANNOT_MODIFY_POST(HttpStatus.FORBIDDEN, "Cannot Modify Post"),
     ALARM_NOT_FOUND(HttpStatus.NOT_FOUND, "Alarm Not Found"),
 

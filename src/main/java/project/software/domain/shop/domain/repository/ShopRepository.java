@@ -10,11 +10,10 @@ import project.software.domain.heart.domain.Heart;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Long> {
-
-    Shop findShopById(Long shopId);
 
     @Query("SELECT h.shop FROM tbl_heart h WHERE h.user.id = :userId")
     List<Shop> findShopsByUserId(@Param("userId") Long userId);
