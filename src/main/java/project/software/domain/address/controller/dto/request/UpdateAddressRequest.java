@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @NoArgsConstructor
 @Getter
-public class SetAddressRequest {
+public class UpdateAddressRequest {
 
     @NotBlank
     private String address;

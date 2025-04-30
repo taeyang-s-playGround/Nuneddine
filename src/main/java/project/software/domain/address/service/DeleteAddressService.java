@@ -1,4 +1,5 @@
 
+
 package project.software.domain.address.service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,17 +15,17 @@ import project.software.domain.user.domain.User;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class SetAddressService {
+public class DeleteAddressService {
 
     private final UserFacade userFacade;
     private final AddressRepository addressRepository;
 
-    public void execute(UpdateAddressRequest request) {
+    public void execute(Long addressId) {
         User user = userFacade.GetCurrentUser();
 
-        addressRepository.save(Address.builder()
-            .address(request.getAddress())
-            .user(user)
-            .build());
+        Address address = addressRepository.findById(addressId)
+            .orElseThrow(() -> AddressNotFoundException.EXCEPTION);
+
+        addressRepository.deleteById(address.getId());
     }
 }
