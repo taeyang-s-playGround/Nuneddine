@@ -24,3 +24,4 @@ public class GetAllLikedShopService {
         return new ShopListResponse(shops);
     }
 }
+
