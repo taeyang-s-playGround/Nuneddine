@@ -7,5 +7,5 @@ import project.software.domain.shop.domain.type.Type;
 import java.util.List;
 
 public record ShopListResponse(List<Shop> shopList) {
-    public record ShopResponse(Long shopId, String brandName, String glassesName, String description, Long price, Type type, GlassesType glassesType) {}
+    public record ShopResponse(Long shopId, String brandName, String glassesName, String description, Long price, Type type, GlassesType glassesType, String imageUrl) {}
 }

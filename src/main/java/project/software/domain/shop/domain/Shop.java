@@ -46,4 +46,6 @@ public class Shop {
     @Enumerated(EnumType.STRING)
     private GlassesType glassesType;
 
+    private String imageUrl;
+
 }
