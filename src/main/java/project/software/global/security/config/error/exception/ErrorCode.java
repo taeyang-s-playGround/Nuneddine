@@ -16,7 +16,7 @@ public enum ErrorCode {
     // 사용자 인증 관련 오류
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "User Not Found"),
     USER_MISMATCH(HttpStatus.FORBIDDEN, "User Mismatch"),
-    ADDRESS_NOT_FOUND(HttpStatus.NOT_FOUND, "Address Not Found"),
+    ADDRESS_NOT_FOUND(HttpStatus.NOT_FOUND, "Lens Not Found"),
     PASSWORD_MISMATCH(HttpStatus.UNAUTHORIZED, "Password Mismatch"),
     EXPIRED_TOKEN(HttpStatus.FORBIDDEN, "Expired token"),
     INVALID_TOKEN(HttpStatus.FORBIDDEN, "Invalid token"),
@@ -24,6 +24,7 @@ public enum ErrorCode {
 
     // 게시글 관련 오류
     SHOP_NOT_FOUND(HttpStatus.NOT_FOUND, "Shop Not Found"),
+    LENS_NOT_FOUND(HttpStatus.NOT_FOUND, "Lens Not Found"),
     CANNOT_MODIFY_POST(HttpStatus.FORBIDDEN, "Cannot Modify Post"),
     ALARM_NOT_FOUND(HttpStatus.NOT_FOUND, "Alarm Not Found"),
 
