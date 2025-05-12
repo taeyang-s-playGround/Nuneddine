@@ -11,4 +11,16 @@ public class UpdateAddressRequest {
 
     @NotBlank
     private String address;
+
+    @NotBlank
+    private String detailAddress;
+
+    @NotBlank
+    private String postCode;
+
+    @NotBlank
+    private String receiver;
+
+    @NotBlank
+    private String phoneNumber;
 }

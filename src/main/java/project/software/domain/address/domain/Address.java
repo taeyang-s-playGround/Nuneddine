@@ -35,7 +35,23 @@ public class Address {
     @Column(columnDefinition = "VARCHAR(100)", nullable = false)
     private String address;
 
-    public void updateAddress(String address) {
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
+    private String detailAddress;
+
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
+    private String postCode;
+
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
+    private String receiver;
+
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
+    private String phoneNumber;
+
+    public void updateAddress(String address, String detailAddress, String postCode, String receiver, String phoneNumber) {
         this.address = address;
+        this.detailAddress = detailAddress;
+        this.postCode = postCode;
+        this.receiver = receiver;
+        this.phoneNumber = phoneNumber;
     }
 }

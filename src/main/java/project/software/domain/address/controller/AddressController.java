@@ -29,7 +29,7 @@ public class AddressController {
     private final GetAddressService getAddressService;
 
     @PostMapping
-    public void SetAddress(@RequestBody @Valid UpdateAddressRequest request) {
+    public void setAddress(@RequestBody @Valid UpdateAddressRequest request) {
         setAddressService.execute(request);
     }
 

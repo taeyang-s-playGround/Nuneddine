@@ -24,6 +24,6 @@ public class UpdateAddressService {
         Address address = addressRepository.findById(addressId)
             .orElseThrow(() -> AddressNotFoundException.EXCEPTION);
 
-        address.updateAddress(request.getAddress());
+        //address.updateAddress(request.getAddress());
     }
 }
