@@ -19,6 +19,10 @@ public class AllAddressResponse {
                 .map(address -> AddressResponse.builder()
                     .id(address.getId())
                     .address(address.getAddress())
+                    .detailAddress(address.getDetailAddress())
+                    .postCode(address.getPostCode())
+                    .receiver(address.getReceiver())
+                    .phoneNumber(address.getPhoneNumber())
                     .build()
                 )
                 .toList()
@@ -30,5 +34,9 @@ public class AllAddressResponse {
     public static class AddressResponse {
         private final Long id;
         private final String address;
+        private final String detailAddress;
+        private final String postCode;
+        private final String receiver;
+        private final String phoneNumber;
     }
 }
