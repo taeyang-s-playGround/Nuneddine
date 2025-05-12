@@ -20,6 +20,7 @@ public class AllAddressResponse {
                     .id(address.getId())
                     .address(address.getAddress())
                     .detailAddress(address.getDetailAddress())
+                    .deliveryAddressName(address.getDeliveryAddressName())
                     .postCode(address.getPostCode())
                     .receiver(address.getReceiver())
                     .phoneNumber(address.getPhoneNumber())
@@ -35,6 +36,7 @@ public class AllAddressResponse {
         private final Long id;
         private final String address;
         private final String detailAddress;
+        private final String deliveryAddressName;
         private final String postCode;
         private final String receiver;
         private final String phoneNumber;

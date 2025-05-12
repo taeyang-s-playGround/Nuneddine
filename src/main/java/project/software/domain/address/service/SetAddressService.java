@@ -25,6 +25,7 @@ public class SetAddressService {
             .address(request.getAddress())
             .user(user)
             .detailAddress(request.getDetailAddress())
+            .deliveryAddressName(request.getDeliveryAddressName())
             .postCode(request.getPostCode())
             .receiver(request.getReceiver())
             .phoneNumber(request.getPhoneNumber())

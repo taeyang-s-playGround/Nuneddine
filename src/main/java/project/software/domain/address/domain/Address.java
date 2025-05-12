@@ -39,6 +39,9 @@ public class Address {
     private String detailAddress;
 
     @Column(columnDefinition = "VARCHAR(100)", nullable = false)
+    private String deliveryAddressName;
+
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
     private String postCode;
 
     @Column(columnDefinition = "VARCHAR(100)", nullable = false)

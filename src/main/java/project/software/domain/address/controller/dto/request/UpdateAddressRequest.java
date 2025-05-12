@@ -13,6 +13,9 @@ public class UpdateAddressRequest {
     private String address;
 
     @NotBlank
+    private String deliveryAddressName;
+
+    @NotBlank
     private String detailAddress;
 
     @NotBlank
