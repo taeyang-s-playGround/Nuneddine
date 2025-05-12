@@ -11,6 +11,7 @@ import project.software.domain.address.domain.repository.AddressRepository;
 import project.software.domain.address.exception.AddressNotFoundException;
 import project.software.domain.auth.facade.UserFacade;
 import project.software.domain.user.domain.User;
+import project.software.domain.user.exception.UserMisMatchException;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,10 @@ public class DeleteAddressService {
 
         Address address = addressRepository.findById(addressId)
             .orElseThrow(() -> AddressNotFoundException.EXCEPTION);
+
+        if(!address.getUser().equals(user)) {
+            throw UserMisMatchException.EXCEPTION;
+        }
 
         addressRepository.deleteById(address.getId());
     }
