@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import project.software.domain.shop.domain.type.LensDateType;
 import project.software.domain.shop.domain.type.Type;
 import project.software.domain.shop.domain.type.GlassesType;
 
@@ -45,6 +46,10 @@ public class Shop {
     @Column(columnDefinition = "VARCHAR(7)", nullable = true)
     @Enumerated(EnumType.STRING)
     private GlassesType glassesType;
+
+    @Column(columnDefinition = "VARCHAR(5)", nullable = true)
+    @Enumerated(EnumType.STRING)
+    private LensDateType dateType;
 
     private String imageUrl;
 

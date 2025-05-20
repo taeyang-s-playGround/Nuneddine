@@ -19,6 +19,6 @@ public class UpdateAlarmService {
         Alarm alarm = alarmRepository.findById(alarmId)
             .orElseThrow(() -> AlarmNotFoundException.EXCEPTION);
 
-        alarm.updateAlarm(request.getName(), request.getStartTime(), request.getEndTime());
+        alarm.updateAlarm(request.getName(), request.getDateType(), request.getStartTime(), request.getEndTime());
     }
 }

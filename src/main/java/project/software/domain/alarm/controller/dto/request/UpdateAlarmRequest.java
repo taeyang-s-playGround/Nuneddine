@@ -2,6 +2,7 @@ package project.software.domain.alarm.controller.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import project.software.domain.shop.domain.type.LensDateType;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 public class UpdateAlarmRequest {
 
     private String name;
+    private LensDateType dateType;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 }

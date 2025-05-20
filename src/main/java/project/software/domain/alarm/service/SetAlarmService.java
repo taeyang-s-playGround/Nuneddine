@@ -20,6 +20,7 @@ public class SetAlarmService {
 
         alarmRepository.save(Alarm.builder()
             .name(request.getName())
+            .dateType(request.getDateType())
             .startTime(request.getStartTime())
             .endTime(request.getEndTime())
             .user(user)
