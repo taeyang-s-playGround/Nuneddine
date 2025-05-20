@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import project.software.domain.alarm.domain.Alarm;
+import project.software.domain.shop.domain.type.LensDateType;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class AlarmListResponse {
                 .map(alarm -> AlarmResponse.builder()
                     .alarmId(alarm.getId())
                     .name(alarm.getName())
+                    .dateType(alarm.getDateType())
                     .startTime(alarm.getStartTime())
                     .endTime(alarm.getEndTime())
                     .build()
@@ -31,6 +34,7 @@ public class AlarmListResponse {
     public static class AlarmResponse {
         private final Long alarmId;
         private final String name;
+        private final LensDateType dateType;
         private final LocalDateTime startTime;
         private final LocalDateTime endTime;
     }
