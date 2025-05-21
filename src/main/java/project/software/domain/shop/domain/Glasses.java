@@ -23,6 +23,4 @@ public class Glasses extends Shop {
     @Column(columnDefinition = "VARCHAR(10)")
     private FrameMaterial frameMaterial;
 
-    @Column(columnDefinition = "VARCHAR(50)")
-    private String groupCode;
 }

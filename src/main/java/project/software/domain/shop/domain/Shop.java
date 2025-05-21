@@ -58,4 +58,6 @@ public class Shop {
     @Column(columnDefinition = "VARCHAR(10)")
     private ShopTag shopTag;
 
+    private String groupId;
+
 }

@@ -15,6 +15,7 @@ import project.software.domain.shop.domain.type.lens.LensColor;
 import project.software.domain.shop.domain.type.lens.LensDateType;
 
 import java.util.List;
+
 @Getter
 @AllArgsConstructor
 public class ShopListResponse {
