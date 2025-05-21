@@ -21,7 +21,6 @@ public class SignUpService {
     private final JwtTokenProvider jwtProvider;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AddressRepository addressRepository;
 
     public TokenResponse execute(SignUpRequest signUpRequest) {
         if (userRepository.existsByAccountId(signUpRequest.getAccountId())) {

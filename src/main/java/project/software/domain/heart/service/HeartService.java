@@ -29,13 +29,12 @@ public class HeartService {
 
         if (heartRepository.existsByUserIdAndShopId(user.getId(), shopId)) {
             heartRepository.deleteByUserIdAndShopId(user.getId(), shopId);
-        }
-        else {
+        } else {
             heartRepository.save(
                 Heart.builder()
                     .user(user)
                     .shop(shop)
                     .build());
         }
-    }    
+    }
 }

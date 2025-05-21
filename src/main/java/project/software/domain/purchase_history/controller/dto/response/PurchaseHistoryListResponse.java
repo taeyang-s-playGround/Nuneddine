@@ -3,11 +3,7 @@ package project.software.domain.purchase_history.controller.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import project.software.domain.cart.controller.dto.response.AllCartResponse;
-import project.software.domain.cart.domain.Cart;
 import project.software.domain.purchase_history.domain.PurchaseHistory;
-import project.software.domain.shop.domain.type.GlassesType;
-import project.software.domain.shop.domain.type.Type;
 
 import java.util.List;
 
@@ -24,10 +20,8 @@ public class PurchaseHistoryListResponse {
                     .shopId(cart.getShop().getId())
                     .brandName(cart.getShop().getBrandName())
                     .glassName(cart.getShop().getGlassesName())
-                    .description(cart.getShop().getDescription())
+                    .description(cart.getShop().getDescriptionImage())
                     .price(cart.getShop().getPrice())
-                    .type(cart.getShop().getType())
-                    .glassesType(cart.getShop().getGlassesType())
                     .count(cart.getCount())
                     .build()
                 ).toList()
@@ -42,8 +36,6 @@ public class PurchaseHistoryListResponse {
         private final String glassName;
         private final String description;
         private final Long price;
-        private final Type type;
-        private final GlassesType glassesType;
         private final Long count;
     }
 }

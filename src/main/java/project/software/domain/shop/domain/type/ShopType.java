@@ -1,6 +1,6 @@
 package project.software.domain.shop.domain.type;
 
-public enum Type {
-    GLASSES,
-    LENS
+public enum ShopType {
+    LENS,
+    GLASSES
 }

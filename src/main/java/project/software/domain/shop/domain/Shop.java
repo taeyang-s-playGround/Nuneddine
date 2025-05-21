@@ -4,23 +4,31 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.software.domain.shop.domain.type.LensDateType;
-import project.software.domain.shop.domain.type.Type;
-import project.software.domain.shop.domain.type.GlassesType;
+import project.software.domain.shop.domain.type.ShopTag;
+import project.software.domain.shop.domain.type.ShopType;
+import project.software.infra.StringListConverter;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity(name = "tbl_shop")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 단일 테이블 전략
+@DiscriminatorColumn(name = "type") // 구분 컬럼 (GLASSES, LENS)
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@NoArgsConstructor
 public class Shop {
 
     @Id
@@ -34,23 +42,20 @@ public class Shop {
     private String glassesName;
 
     @Column(columnDefinition = "VARCHAR(100)", nullable = true)
-    private String description;
+    private String descriptionImage;
 
     @Column(nullable = true)
     private Long price;
 
-    @Column(columnDefinition = "VARCHAR(8)", nullable = true)
-    @Enumerated(EnumType.STRING)
-    private Type type;
+    @Convert(converter = StringListConverter.class)
+    private List<String> imageUrls = new ArrayList<>();
 
-    @Column(columnDefinition = "VARCHAR(7)", nullable = true)
     @Enumerated(EnumType.STRING)
-    private GlassesType glassesType;
+    @Column(columnDefinition = "VARCHAR(10)")
+    private ShopType shopType;
 
-    @Column(columnDefinition = "VARCHAR(5)", nullable = true)
     @Enumerated(EnumType.STRING)
-    private LensDateType dateType;
-
-    private String imageUrl;
+    @Column(columnDefinition = "VARCHAR(10)")
+    private ShopTag shopTag;
 
 }

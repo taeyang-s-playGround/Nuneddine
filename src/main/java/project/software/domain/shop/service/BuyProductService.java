@@ -10,6 +10,7 @@ import project.software.domain.cart.domain.Cart;
 import project.software.domain.cart.domain.repository.CartRepository;
 import project.software.domain.purchase_history.domain.PurchaseHistory;
 import project.software.domain.purchase_history.domain.repository.PurchaseHistoryRepository;
+import project.software.domain.shop.domain.Lens;
 import project.software.domain.user.domain.User;
 
 import java.time.LocalDateTime;
@@ -29,9 +30,11 @@ public class BuyProductService {
         User user = userFacade.GetCurrentUser();
 
         List<Cart> carts = cartRepository.findAllByUserId(user.getId());
+
         carts.forEach(cart -> {
             cartRepository.deleteById(cart.getId());
 
+            // 구매 내역 저장
             purchaseHistoryRepository.save(PurchaseHistory.builder()
                 .count(cart.getCount())
                 .shop(cart.getShop())
@@ -39,28 +42,28 @@ public class BuyProductService {
                 .build()
             );
 
-            LocalDateTime startTime = LocalDateTime.now();
-            LocalDateTime endTime;
+            // 알람 저장은 렌즈인 경우에만
+            if (cart.getShop() instanceof Lens lens) {
+                LocalDateTime startTime = LocalDateTime.now();
+                LocalDateTime endTime;
 
-            switch (cart.getShop().getDateType()) {
-                case MONTH:
-                    endTime = startTime.plusDays(30);
-                    break;
-                case WEEK:
-                    endTime = startTime.plusDays(7);
-                    break;
-                default:
-                    return;
+                switch (lens.getDateType()) {
+                    case MONTH -> endTime = startTime.plusDays(30);
+                    case WEEK -> endTime = startTime.plusDays(7);
+                    default -> {
+                        return; // 혹시 모를 잘못된 Enum 값 대응
+                    }
+                }
+
+                alarmRepository.save(Alarm.builder()
+                    .name(lens.getBrandName())
+                    .user(cart.getUser())
+                    .dateType(lens.getDateType())
+                    .startTime(startTime)
+                    .endTime(endTime)
+                    .build()
+                );
             }
-
-            alarmRepository.save(Alarm.builder()
-                .name(cart.getShop().getBrandName())
-                .user(cart.getUser())
-                .dateType(cart.getShop().getDateType())
-                .startTime(startTime)
-                .endTime(endTime)
-                .build()
-            );
         });
     }
 }

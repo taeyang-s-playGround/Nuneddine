@@ -24,7 +24,8 @@ public class JwtTokenProvider {
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
 
-    private static final String ACCESS_KEY = "access_token";
+    private static final String ACCESS_KEY
+        = "access_token";
 
     public String createAccessToken(String accountId) {
         return createToken(accountId, ACCESS_KEY, jwtProperties.getAccessExp() * 10L);

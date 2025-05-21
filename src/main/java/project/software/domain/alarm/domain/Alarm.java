@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.software.domain.shop.domain.type.LensDateType;
+import project.software.domain.shop.domain.type.lens.LensDateType;
 import project.software.domain.user.domain.User;
 
 import javax.persistence.Column;
