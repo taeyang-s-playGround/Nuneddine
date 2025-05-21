@@ -61,17 +61,13 @@ public class ShopController {
 
     //메인페이지
     @GetMapping("/lens")
-    public LensListResponse getLensListByCategory(
-        @RequestParam(value = "lens_color", required = false) LensColor lensColor,
-        @RequestParam(value = "lens_date_type", required = false) LensDateType lensDateType
-    ) {
+    public LensListResponse getLensListByCategory() {
         return getLensListByCategoryService.execute();
     }
 
     //메인페이지
     @GetMapping("/glasses")
-    public GlassesListResponse getGlassesListByCategory(
-    ) {
+    public GlassesListResponse getGlassesListByCategory() {
         return getGlassesListByCategoryService.execute();
     }
 }
