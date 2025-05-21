@@ -39,13 +39,6 @@ public class SignUpService {
                 .build()
         );
 
-        addressRepository.save(
-            Address.builder()
-                .user(user)
-                .address("default address")
-                .build()
-        );
-
         String token = jwtProvider.createAccessToken(signUpRequest.getAccountId());
 
         return new TokenResponse(token);
