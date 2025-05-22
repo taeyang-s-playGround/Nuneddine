@@ -7,7 +7,6 @@ import project.software.domain.shop.domain.Glasses;
 import project.software.domain.shop.domain.Lens;
 import project.software.domain.shop.domain.Shop;
 import project.software.domain.shop.domain.type.ShopType;
-import project.software.domain.shop.domain.type.glasses.FrameMaterial;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
 import project.software.domain.shop.domain.type.lens.LensColor;
 import project.software.domain.shop.domain.type.lens.LensDateType;
@@ -27,7 +26,6 @@ public class ShopDetailResponse {
     private final LensDateType dateType;
     private final LensColor lensColor;
     private final FrameShape frameShape;
-    private final FrameMaterial frameMaterial;
 
     private final List<String> imageUrls;
     private final Boolean isLiked;
@@ -39,7 +37,6 @@ public class ShopDetailResponse {
         LensDateType dateType = null;
         LensColor lensColor = null;
         FrameShape frameShape = null;
-        FrameMaterial frameMaterial = null;
         ShopType shopType;
 
         if (shop instanceof Lens lens) {
@@ -48,7 +45,6 @@ public class ShopDetailResponse {
             shopType = ShopType.LENS;
         } else if (shop instanceof Glasses glasses) {
             frameShape = glasses.getFrameShape();
-            frameMaterial = glasses.getFrameMaterial();
             shopType = ShopType.GLASSES;
         } else {
             throw new IllegalStateException("Unknown shop type: " + shop.getClass().getSimpleName());
@@ -68,7 +64,6 @@ public class ShopDetailResponse {
             dateType,
             lensColor,
             frameShape,
-            frameMaterial,
             shop.getImageUrls(),
             heartRepository.existsByUserIdAndShopId(userId, shop.getId()),
             shopType,

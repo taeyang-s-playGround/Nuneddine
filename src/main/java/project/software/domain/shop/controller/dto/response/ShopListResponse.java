@@ -9,7 +9,6 @@ import project.software.domain.shop.domain.Glasses;
 import project.software.domain.shop.domain.Lens;
 import project.software.domain.shop.domain.Shop;
 import project.software.domain.shop.domain.type.ShopType;
-import project.software.domain.shop.domain.type.glasses.FrameMaterial;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
 import project.software.domain.shop.domain.type.lens.LensColor;
 import project.software.domain.shop.domain.type.lens.LensDateType;
@@ -27,18 +26,12 @@ public class ShopListResponse {
         List<ShopResponse> responses = shops.stream()
             .map(shop -> {
                 LensDateType dateType = null;
-                LensColor lensColor = null;
-                FrameShape frameShape = null;
-                FrameMaterial frameMaterial = null;
                 ShopType shopType;
 
                 if (shop instanceof Lens lens) {
                     dateType = lens.getDateType();
-                    lensColor = lens.getLensColor();
                     shopType = ShopType.LENS;
                 } else if (shop instanceof Glasses glasses) {
-                    frameShape = glasses.getFrameShape();
-                    frameMaterial = glasses.getFrameMaterial();
                     shopType = ShopType.GLASSES;
                 } else {
                     throw new IllegalStateException("Unknown shop type: " + shop.getClass().getSimpleName());

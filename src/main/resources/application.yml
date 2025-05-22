@@ -31,8 +31,8 @@ jwt:
   header: ${HEADER:Authorization}
   prefix : ${PREFIX:Bearer}
   secret-key: ${JWT_SECRET_KEY:dfhasjkjkdfaskverafter}
-  access-exp: ${JWT_ACCESS_EXP:600000}
-  refresh-exp: ${JWT_REFRESH_EXP:6048000}
+  access-exp: 60000000
+  refresh-exp: ${JWT_REFRESH_EXP:604800000}
 
 logging:
   level:

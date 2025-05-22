@@ -6,7 +6,6 @@ import lombok.Getter;
 import project.software.domain.heart.domain.repository.HeartRepository;
 import project.software.domain.shop.domain.Glasses;
 import project.software.domain.shop.domain.type.ShopTag;
-import project.software.domain.shop.domain.type.glasses.FrameMaterial;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
 
 import java.util.List;
@@ -34,7 +33,6 @@ public class GlassesListResponse {
                         .description(glasses.getDescriptionImage())
                         .price(glasses.getPrice())
                         .frameShape(glasses.getFrameShape())
-                        .frameMaterial(glasses.getFrameMaterial())
                         .imageUrls(glasses.getImageUrls())
                         .isLiked(heartRepository.existsByUserIdAndShopId(userId, glasses.getId()))
                         .build(),
@@ -60,7 +58,6 @@ public class GlassesListResponse {
         private final String description;
         private final Long price;
         private final FrameShape frameShape;
-        private final FrameMaterial frameMaterial;
         private final List<String> imageUrls;
         private final Boolean isLiked;
     }
