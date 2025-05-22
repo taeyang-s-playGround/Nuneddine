@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class LensListResponse {
 
-    private final Long shopsCount;
     private final List<LensResponse> trendingList;
     private final List<LensResponse> hipsterList;
     private final List<LensResponse> hotNowList;
@@ -41,7 +40,6 @@ public class LensListResponse {
             ));
 
         return new LensListResponse(
-            (long) lenses.size(),
             tagMap.getOrDefault(ShopTag.TRENDING, List.of()),
             tagMap.getOrDefault(ShopTag.HIPSTER, List.of()),
             tagMap.getOrDefault(ShopTag.HOT_NOW, List.of()),
