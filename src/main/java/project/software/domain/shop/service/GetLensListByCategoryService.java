@@ -27,7 +27,6 @@ public class GetLensListByCategoryService {
 
         List<Lens> lenses = shopRepository.findAllLens();
 
-
         return LensListResponse.from(lenses, user.getId(), heartRepository);
     }
 }

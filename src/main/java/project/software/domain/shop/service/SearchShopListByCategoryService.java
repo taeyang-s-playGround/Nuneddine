@@ -27,8 +27,11 @@ public class SearchShopListByCategoryService {
     private final UserFacade userFacade;
     private final HeartRepository heartRepository;
 
-    public ShopListResponse execute(String keyword, LensColor lensColor, LensDateType lensDateType,
-                                    FrameShape frameShape, FrameMaterial frameMaterial) {
+    public ShopListResponse execute(String keyword,
+                                    List<LensColor> lensColors,
+                                    List<LensDateType> lensDateTypes,
+                                    List<FrameShape> frameShapes,
+                                    List<FrameMaterial> frameMaterials) {
 
         User user = userFacade.GetCurrentUser();
 
@@ -42,21 +45,32 @@ public class SearchShopListByCategoryService {
                     (shop.getDescriptionImage() != null && shop.getDescriptionImage().contains(keyword));
 
                 boolean matchesLens = shop instanceof Lens lens && (
-                    (lensColor != null && lens.getLensColor() == lensColor) ||
-                        (lensDateType != null && lens.getDateType() == lensDateType)
+                    (lensColors != null && !lensColors.isEmpty() && lensColors.contains(lens.getLensColor())) ||
+                        (lensDateTypes != null && !lensDateTypes.isEmpty() && lensDateTypes.contains(lens.getDateType()))
                 );
 
                 boolean matchesGlasses = shop instanceof Glasses glasses && (
-                    (frameShape != null && glasses.getFrameShape() == frameShape) ||
-                        (frameMaterial != null && glasses.getFrameMaterial() == frameMaterial)
+                    (frameShapes != null && !frameShapes.isEmpty() && frameShapes.contains(glasses.getFrameShape())) ||
+                        (frameMaterials != null && !frameMaterials.isEmpty() && frameMaterials.contains(glasses.getFrameMaterial()))
                 );
 
-                boolean matchesOptional = lensColor == null && lensDateType == null && frameShape == null && frameMaterial == null;
+                boolean noFilterProvided = (lensColors == null || lensColors.isEmpty()) &&
+                    (lensDateTypes == null || lensDateTypes.isEmpty()) &&
+                    (frameShapes == null || frameShapes.isEmpty()) &&
+                    (frameMaterials == null || frameMaterials.isEmpty());
 
-                return matchesKeyword && (matchesLens || matchesGlasses || matchesOptional);
+                return matchesKeyword && (matchesLens || matchesGlasses || noFilterProvided);
             })
             .toList();
 
-        return ShopListResponse.from(filtered, user.getId(), heartRepository);
+        return ShopListResponse.from(
+            filtered,
+            user.getId(),
+            heartRepository,
+            lensColors,
+            lensDateTypes,
+            frameShapes,
+            frameMaterials
+        );
     }
 }

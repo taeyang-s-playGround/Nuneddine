@@ -24,6 +24,6 @@ public class GetAllShopService {
 
         User user = userFacade.GetCurrentUser();
 
-        return ShopListResponse.from(shops, user.getId(), heartRepository);
+        return null;
     }
 }

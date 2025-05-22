@@ -26,7 +26,7 @@ public class GetAllLikedShopService {
         User user = userFacade.GetCurrentUser();
         List<Shop> shops = shopRepository.findShopsByUserId(user.getId());
 
-        return ShopListResponse.from(shops, user.getId(), heartRepository);
+        //return ShopListResponse.from(shops, user.getId(), heartRepository);
+        return null;
     }
 }
-

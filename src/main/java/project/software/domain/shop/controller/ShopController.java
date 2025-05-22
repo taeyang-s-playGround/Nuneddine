@@ -20,6 +20,8 @@ import project.software.domain.shop.service.GetGlassesListByCategoryService;
 import project.software.domain.shop.service.GetLensListByCategoryService;
 import project.software.domain.shop.service.SearchShopListByCategoryService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/shops")
@@ -51,12 +53,12 @@ public class ShopController {
     @GetMapping("/search")
     public ShopListResponse searchShopListByCategory(
         @RequestParam(value = "keyword", required = false) String keyword,
-        @RequestParam(value = "lens_color", required = false) LensColor lensColor,
-        @RequestParam(value = "lens_date_type", required = false) LensDateType lensDateType,
-        @RequestParam(value = "frame_shape", required = false) FrameShape frameShape,
-        @RequestParam(value = "frame_material", required = false) FrameMaterial frameMaterial
+        @RequestParam(value = "lens_color", required = false) List<LensColor> lensColors,
+        @RequestParam(value = "lens_date_type", required = false) List<LensDateType> lensDateTypes,
+        @RequestParam(value = "frame_shape", required = false) List<FrameShape> frameShapes,
+        @RequestParam(value = "frame_material", required = false) List<FrameMaterial> frameMaterials
     ) {
-        return searchShopListByCategoryService.execute(keyword, lensColor, lensDateType, frameShape, frameMaterial);
+        return searchShopListByCategoryService.execute(keyword, lensColors, lensDateTypes, frameShapes, frameMaterials);
     }
 
     //메인페이지
