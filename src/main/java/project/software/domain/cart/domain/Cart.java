@@ -38,4 +38,11 @@ public class Cart {
 
     private Long count;
 
+    private Float lensPower;
+
+
+    public void updateCart(Long count, Float lensPower) {
+        this.count = count;
+        this.lensPower = lensPower;
+    }
 }
