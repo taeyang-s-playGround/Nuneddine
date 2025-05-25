@@ -37,4 +37,6 @@ public class PurchaseHistory {
 
     private Long count;
 
+    private Float lensPower = 1.0f;
+
 }

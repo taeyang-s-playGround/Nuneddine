@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.software.domain.auth.facade.UserFacade;
+import project.software.domain.cart.controller.dto.request.ChangeOptionRequest;
 import project.software.domain.cart.domain.Cart;
 import project.software.domain.cart.domain.repository.CartRepository;
 import project.software.domain.shop.domain.Shop;
@@ -20,16 +21,17 @@ public class AddCartService {
     private final CartRepository cartRepository;
     private final ShopRepository shopRepository;
 
-    public void execute(Long shopId, Long count) {
+    public void execute(Long shopId, ChangeOptionRequest request) {
 
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
         Shop shop = shopRepository.findById(shopId)
             .orElseThrow(() -> ShopNotFoundException.EXCEPTION);
 
         cartRepository.save(Cart.builder()
-                .count(count)
+                .count(request.getCount())
                 .user(user)
                 .shop(shop)
+                .lensPower(request.getLensPower())
             .build());
     }
 }
