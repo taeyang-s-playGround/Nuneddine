@@ -47,7 +47,6 @@ public class ShopListResponse {
                     .shopId(shop.getId())
                     .brandName(shop.getBrandName())
                     .glassesName(shop.getGlassesName())
-                    .descriptionImage(shop.getDescriptionImage())
                     .price(shop.getPrice())
                     .dateType(dateType)
                     .imageUrls(shop.getImageUrls())
@@ -81,7 +80,6 @@ public class ShopListResponse {
         private final Long shopId;
         private final String brandName;
         private final String glassesName;
-        private final String descriptionImage;
         private final Long price;
         private final LensDateType dateType;
         private final List<String> imageUrls;

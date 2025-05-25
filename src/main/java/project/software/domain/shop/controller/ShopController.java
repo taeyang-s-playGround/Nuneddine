@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import project.software.domain.shop.controller.dto.response.GlassesListResponse;
 import project.software.domain.shop.controller.dto.response.LensListResponse;
+import project.software.domain.shop.controller.dto.response.LikedGlassesResponse;
+import project.software.domain.shop.controller.dto.response.LikedLensResponse;
 import project.software.domain.shop.controller.dto.response.ShopListResponse;
 import project.software.domain.shop.domain.type.glasses.FrameMaterial;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
 import project.software.domain.shop.domain.type.lens.LensColor;
 import project.software.domain.shop.domain.type.lens.LensDateType;
 import project.software.domain.shop.service.BuyProductService;
-import project.software.domain.shop.service.GetAllLikedShopService;
+import project.software.domain.shop.service.GetLikedGlassesService;
+import project.software.domain.shop.service.GetLikedLensService;
 import project.software.domain.shop.service.GetAllShopService;
 import project.software.domain.shop.service.GetGlassesListByCategoryService;
 import project.software.domain.shop.service.GetLensListByCategoryService;
@@ -29,7 +32,8 @@ public class ShopController {
 
     private final GetAllShopService getAllShopService;
     private final BuyProductService buyProductService;
-    private final GetAllLikedShopService getAllLikedShopService;
+    private final GetLikedLensService getLikedLensService;
+    private final GetLikedGlassesService getLikedGlassesService;
     private final GetLensListByCategoryService getLensListByCategoryService;
     private final GetGlassesListByCategoryService getGlassesListByCategoryService;
     private final SearchShopListByCategoryService searchShopListByCategoryService;
@@ -39,9 +43,14 @@ public class ShopController {
         return getAllShopService.execute();
     }
 
-    @GetMapping("/liked")
-    public ShopListResponse getLikedShopList() {
-        return getAllLikedShopService.execute();
+    @GetMapping("/liked/glasses")
+    public LikedGlassesResponse getLikedGlassesList() {
+        return getLikedGlassesService.execute();
+    }
+
+    @GetMapping("/liked/lens")
+    public LikedLensResponse getLikedLensList() {
+        return getLikedLensService.execute();
     }
 
     @PostMapping
