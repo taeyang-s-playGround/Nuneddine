@@ -27,7 +27,7 @@ public class BuyProductService {
     private final AlarmRepository alarmRepository;
 
     public void execute() {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         List<Cart> carts = cartRepository.findAllByUserId(user.getId());
 

@@ -17,7 +17,7 @@ public class GetAllAlarmService {
     private final AlarmRepository alarmRepository;
 
     public AlarmListResponse execute() {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
         List<Alarm> alarmList = alarmRepository.findAllByUserId(user.getId());
 
         return AlarmListResponse.from(alarmList);

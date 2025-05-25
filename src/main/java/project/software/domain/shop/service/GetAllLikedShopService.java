@@ -23,7 +23,7 @@ public class GetAllLikedShopService {
 
 
     public ShopListResponse execute() {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
         List<Shop> shops = shopRepository.findShopsByUserId(user.getId());
 
         //return ShopListResponse.from(shops, user.getId(), heartRepository);

@@ -7,9 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import project.software.domain.auth.facade.UserFacade;
 import project.software.domain.heart.domain.repository.HeartRepository;
 import project.software.domain.shop.controller.dto.response.GlassesListResponse;
-import project.software.domain.shop.controller.dto.response.LensListResponse;
 import project.software.domain.shop.domain.Glasses;
-import project.software.domain.shop.domain.Lens;
 import project.software.domain.shop.domain.repository.ShopRepository;
 import project.software.domain.user.domain.User;
 
@@ -26,7 +24,7 @@ public class GetGlassesListByCategoryService {
 
     public GlassesListResponse execute() {
 
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         List<Glasses> glasses = shopRepository.findAllGlasses();
 

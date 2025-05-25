@@ -22,7 +22,7 @@ public class HeartService {
 
     public void execute(Long shopId) {
 
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         Shop shop = shopRepository.findById(shopId)
             .orElseThrow(() -> ShopNotFoundException.EXCEPTION);

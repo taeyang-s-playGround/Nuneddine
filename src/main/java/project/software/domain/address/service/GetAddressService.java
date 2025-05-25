@@ -10,7 +10,6 @@ import project.software.domain.auth.facade.UserFacade;
 import project.software.domain.user.domain.User;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +20,7 @@ public class GetAddressService {
     private final AddressRepository addressRepository;
 
     public AllAddressResponse execute() {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         List<Address> addressList = addressRepository.findAllByUserId(user.getId());
         return AllAddressResponse.from(addressList);

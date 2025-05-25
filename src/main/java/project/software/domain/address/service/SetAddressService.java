@@ -19,7 +19,7 @@ public class SetAddressService {
     private final AddressRepository addressRepository;
 
     public void execute(UpdateAddressRequest request) {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         addressRepository.save(Address.builder()
             .address(request.getAddress())

@@ -12,7 +12,7 @@ import project.software.domain.user.exception.UserNotFoundException;
 public class UserFacade {
     public final UserRepository userRepository;
 
-    public User GetCurrentUser() {
+    public User getCurrentUser() {
         String accountId = SecurityContextHolder.getContext().getAuthentication().getName();
 
         return userRepository.findByAccountId(accountId)

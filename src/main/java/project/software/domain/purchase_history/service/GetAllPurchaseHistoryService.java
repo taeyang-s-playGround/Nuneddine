@@ -20,7 +20,7 @@ public class GetAllPurchaseHistoryService {
     private final UserFacade userFacade;
 
     public PurchaseHistoryListResponse execute() {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
         List<PurchaseHistory> purchaseHistoryList = purchaseHistoryRepository.findAllByUserId(user.getId());
 
         return PurchaseHistoryListResponse.from(purchaseHistoryList);

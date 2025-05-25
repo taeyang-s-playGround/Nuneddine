@@ -23,7 +23,7 @@ public class GetLensListByCategoryService {
 
     public LensListResponse execute() {
 
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         List<Lens> lenses = shopRepository.findAllLens();
 

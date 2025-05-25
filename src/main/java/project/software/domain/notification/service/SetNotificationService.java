@@ -17,7 +17,7 @@ public class SetNotificationService {
     private final FCMService fcmService;
 
     public void execute() throws FirebaseMessagingException {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         fcmService.sendMessage(user.getDeviceToken(), "test", "test");
     }

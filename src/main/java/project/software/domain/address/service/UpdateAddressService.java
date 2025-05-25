@@ -19,7 +19,7 @@ public class UpdateAddressService {
     private final AddressRepository addressRepository;
 
     public void execute(Long addressId, UpdateAddressRequest request) {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         Address address = addressRepository.findById(addressId)
             .orElseThrow(() -> AddressNotFoundException.EXCEPTION);

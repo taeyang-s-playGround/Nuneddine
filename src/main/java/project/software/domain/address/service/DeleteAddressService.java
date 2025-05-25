@@ -5,7 +5,6 @@ package project.software.domain.address.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.software.domain.address.controller.dto.request.UpdateAddressRequest;
 import project.software.domain.address.domain.Address;
 import project.software.domain.address.domain.repository.AddressRepository;
 import project.software.domain.address.exception.AddressNotFoundException;
@@ -22,7 +21,7 @@ public class DeleteAddressService {
     private final AddressRepository addressRepository;
 
     public void execute(Long addressId) {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         Address address = addressRepository.findById(addressId)
             .orElseThrow(() -> AddressNotFoundException.EXCEPTION);

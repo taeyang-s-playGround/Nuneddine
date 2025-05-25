@@ -16,7 +16,7 @@ public class SetAlarmService {
     private final UserFacade userFacade;
 
     public void execute(SetAlarmRequest request) {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         alarmRepository.save(Alarm.builder()
             .name(request.getName())

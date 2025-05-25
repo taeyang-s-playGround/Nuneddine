@@ -15,7 +15,7 @@ public class GetMyPageService {
     private final UserFacade userFacade;
 
     public GetMyPageResponse execute() {
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
         return new GetMyPageResponse(user);
     }
 }

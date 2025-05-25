@@ -33,7 +33,7 @@ public class SearchShopListByCategoryService {
                                     List<FrameShape> frameShapes,
                                     List<FrameMaterial> frameMaterials) {
 
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         List<Shop> shops = shopRepository.findAll();
 

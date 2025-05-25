@@ -22,7 +22,7 @@ public class GetAllShopService {
     public ShopListResponse execute() {
         List<Shop> shops = shopRepository.findAll();
 
-        User user = userFacade.GetCurrentUser();
+        User user = userFacade.getCurrentUser();
 
         return null;
     }
