@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import project.software.domain.cart.controller.dto.request.ChangeOptionRequest;
+import project.software.domain.cart.controller.dto.request.DeleteCartsRequest;
 import project.software.domain.cart.controller.dto.response.GlassesCartResponse;
 import project.software.domain.cart.controller.dto.response.LensCartResponse;
 import project.software.domain.cart.domain.Cart;
@@ -59,8 +60,8 @@ public class CartController {
         changeOptionService.execute(cartId, request);
     }
 
-    @DeleteMapping("/{cart-id}")
-    public void deleteCart(@PathVariable ("cart-id") Long cartId) {
-        deleteCartService.execute(cartId);
+    @DeleteMapping
+    public void deleteCart(@RequestBody DeleteCartsRequest request) {
+        deleteCartService.execute(request);
     }
 }

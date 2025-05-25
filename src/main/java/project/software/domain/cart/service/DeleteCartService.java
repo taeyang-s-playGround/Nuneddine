@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.software.domain.auth.facade.UserFacade;
+import project.software.domain.cart.controller.dto.request.DeleteCartsRequest;
 import project.software.domain.cart.domain.Cart;
 import project.software.domain.cart.domain.repository.CartRepository;
 import project.software.domain.cart.exception.CartNotFoundException;
@@ -18,16 +19,18 @@ public class DeleteCartService {
     private final CartRepository cartRepository;
     private final UserFacade userFacade;
 
-    public void execute(Long cartId) {
-
+    public void execute(DeleteCartsRequest request) {
         User user = userFacade.getCurrentUser();
 
-        Cart cart = cartRepository.findById(cartId).orElseThrow(()-> CartNotFoundException.EXCEPTION);
+        for (Long cartId : request.getCartIds()) {
+            Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> CartNotFoundException.EXCEPTION);
 
-        if (!cart.getUser().getId().equals(user.getId())) {
-            throw UserMisMatchException.EXCEPTION;
+            if (!cart.getUser().getId().equals(user.getId())) {
+                throw UserMisMatchException.EXCEPTION;
+            }
+
+            cartRepository.delete(cart);
         }
-
-        cartRepository.delete(cart);
     }
 }

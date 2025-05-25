@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import project.software.domain.cart.domain.Cart;
 import project.software.domain.shop.domain.Glasses;
-import project.software.domain.shop.domain.type.glasses.FrameMaterial;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
 
 import java.util.List;

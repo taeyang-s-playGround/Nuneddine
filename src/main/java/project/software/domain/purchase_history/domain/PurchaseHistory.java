@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.time.LocalDate;
 
 @Getter
 @Entity(name = "tbl_purchase_history")
@@ -39,4 +40,5 @@ public class PurchaseHistory {
 
     private Float lensPower = 1.0f;
 
+    private LocalDate date = LocalDate.now();
 }
