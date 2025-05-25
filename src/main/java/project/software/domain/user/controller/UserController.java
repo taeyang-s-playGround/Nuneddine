@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import project.software.domain.user.controller.dto.request.UpdateAccountIdRequest;
 import project.software.domain.user.controller.dto.request.UpdateLensPowerRequest;
 import project.software.domain.user.controller.dto.response.GetMyLensPowerResponse;
 import project.software.domain.user.controller.dto.response.GetMyPageResponse;
 import project.software.domain.user.service.GetMyLensPowerService;
 import project.software.domain.user.service.GetMyPageService;
+import project.software.domain.user.service.UpdateAccountIdService;
 import project.software.domain.user.service.UpdateMyLensPowerService;
 
 import javax.validation.Valid;
@@ -24,6 +26,7 @@ public class UserController {
     private final GetMyPageService getMyPageService;
     private final UpdateMyLensPowerService updateMyLensPowerService;
     private final GetMyLensPowerService getMyLensPowerService;
+    private final UpdateAccountIdService updateAccountIdService;
 
     @GetMapping("/my-page")
     @ResponseStatus(HttpStatus.OK)
@@ -35,6 +38,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public void updateLensPower(@RequestBody @Valid UpdateLensPowerRequest request) {
         updateMyLensPowerService.execute(request);
+    }
+
+    @PatchMapping("/info")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateUserInfo(@RequestBody @Valid UpdateAccountIdRequest request) {
+        updateAccountIdService.execute(request);
     }
 
     @GetMapping("/lens")

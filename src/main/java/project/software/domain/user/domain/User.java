@@ -35,7 +35,6 @@ public class User {
 
     private Float rightLensPower = 1.0f;
 
-
     @Builder
     public User(Long id, String accountId, String name, String password, String deviceToken, Float leftLensPower, Float rightLensPower) {
         this.id = id;
@@ -50,5 +49,9 @@ public class User {
     public void updateLensPower(Float leftLensPower, Float rightLensPower) {
         this.rightLensPower = rightLensPower;
         this.leftLensPower = leftLensPower;
+    }
+
+    public void updateAccountId(String accountId) {
+        this.accountId = accountId;
     }
 }
