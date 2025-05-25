@@ -30,8 +30,7 @@ public class GlassesCartResponse {
                         .imageUrls(glasses.getImageUrls())
                         .frameShape(glasses.getFrameShape())
                         .glassName(glasses.getGlassesName())
-                        .leftLensPower(cart.getLeftLensPower())
-                        .rightLensPower(cart.getRightLensPower())
+                        .lensPower(cart.getLensPower())
                         .price(glasses.getPrice())
                         .count(cart.getCount())
                         .build();
@@ -49,8 +48,7 @@ public class GlassesCartResponse {
         private final List<String> imageUrls;
         private final FrameShape frameShape;
         private final String glassName;
-        private final Float leftLensPower;
-        private final Float rightLensPower;
+        private final Float lensPower;
         private final Long price;
         private final Long count;
     }

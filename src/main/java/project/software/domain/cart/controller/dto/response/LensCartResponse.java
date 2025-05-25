@@ -27,8 +27,7 @@ public class LensCartResponse {
                         .imageUrls(lens.getImageUrls())
                         .dateType(lens.getDateType())
                         .glassName(lens.getGlassesName())
-                        .leftLensPower(cart.getLeftLensPower())
-                        .rightLensPower(cart.getRightLensPower())
+                        .lensPower(cart.getLensPower())
                         .price(lens.getPrice())
                         .count(cart.getCount())
                         .build();
@@ -46,8 +45,7 @@ public class LensCartResponse {
         private final List<String> imageUrls;
         private final LensDateType dateType;
         private final String glassName;
-        private final Float leftLensPower;
-        private final Float rightLensPower;
+        private final Float lensPower;
         private final Long price;
         private final Long count;
     }
