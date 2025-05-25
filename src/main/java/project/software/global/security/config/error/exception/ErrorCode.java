@@ -23,6 +23,7 @@ public enum ErrorCode {
     JwtSigningException(HttpStatus.FORBIDDEN, "JWT Signing Exception"),
 
     // 게시글 관련 오류
+    CART_NOT_FOUND(HttpStatus.NOT_FOUND, "Cart Not Found"),
     SHOP_NOT_FOUND(HttpStatus.NOT_FOUND, "Shop Not Found"),
     LENS_NOT_FOUND(HttpStatus.NOT_FOUND, "Lens Not Found"),
     CANNOT_MODIFY_POST(HttpStatus.FORBIDDEN, "Cannot Modify Post"),
