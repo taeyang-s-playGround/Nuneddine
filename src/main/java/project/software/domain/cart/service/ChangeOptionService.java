@@ -19,6 +19,9 @@ public class ChangeOptionService {
 
     public void execute(Long cartId, ChangeOptionRequest request) {
 
+        //이거 그거임!!!!!!!!!!!!!!!!!!!!!!
+        //똑같은 상품 그거면 안돼게ㅐ
+
         Cart cart = cartRepository.findById(cartId).orElseThrow(()-> CartNotFoundException.EXCEPTION);
 
         cart.updateCart(request.getCount(), request.getLensPower());

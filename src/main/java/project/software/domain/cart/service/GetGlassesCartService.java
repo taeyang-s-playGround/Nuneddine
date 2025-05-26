@@ -7,6 +7,8 @@ import project.software.domain.cart.controller.dto.response.GlassesCartResponse;
 import project.software.domain.cart.domain.Cart;
 import project.software.domain.cart.domain.repository.CartRepository;
 import project.software.domain.shop.domain.Glasses;
+import project.software.domain.shop.domain.Shop;
+import project.software.domain.shop.domain.type.ShopType;
 import project.software.domain.user.domain.User;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class GetGlassesCartService {
 
         List<Cart> carts = cartRepository.findAllByUserId(user.getId())
             .stream()
-            .filter(cart -> cart.getShop() instanceof Glasses)
+            .filter(cart -> cart.getShop().getShopType() == ShopType.GLASSES) // 여기 변경
             .toList();
 
         Long totalPrice = carts.stream()
