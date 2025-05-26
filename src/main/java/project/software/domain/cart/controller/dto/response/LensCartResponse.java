@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.hibernate.Hibernate;
 import project.software.domain.cart.domain.Cart;
 import project.software.domain.shop.domain.Lens;
+import project.software.domain.shop.domain.Shop;
 import project.software.domain.shop.domain.type.lens.LensDateType;
 
 import java.util.List;
@@ -22,8 +23,11 @@ public class LensCartResponse {
         return new LensCartResponse((long) carts.size(),
             carts.stream()
                 .map(cart -> {
-                    // Hibernate 프록시 객체 언프록싱
-                    Lens lens = (Lens) Hibernate.unproxy(cart.getShop());
+                    Shop shop = Hibernate.unproxy(cart.getShop(), Shop.class);
+
+                    if (!(shop instanceof Lens lens)) {
+                        throw new IllegalStateException("Shop is not a Lens type: id = " + shop.getId());
+                    }
 
                     return CartResponse.builder()
                         .cartId(cart.getId())
@@ -40,6 +44,7 @@ public class LensCartResponse {
             totalPrice
         );
     }
+
 
     @Getter
     @Builder
