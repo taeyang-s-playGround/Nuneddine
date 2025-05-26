@@ -3,11 +3,13 @@ package project.software.domain.cart.controller.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.Hibernate;
 import project.software.domain.cart.domain.Cart;
 import project.software.domain.shop.domain.Lens;
 import project.software.domain.shop.domain.type.lens.LensDateType;
 
 import java.util.List;
+
 @Getter
 @AllArgsConstructor
 public class LensCartResponse {
@@ -20,8 +22,11 @@ public class LensCartResponse {
         return new LensCartResponse((long) carts.size(),
             carts.stream()
                 .map(cart -> {
-                    Lens lens = (Lens) cart.getShop();
+                    // Hibernate 프록시 객체 언프록싱
+                    Lens lens = (Lens) Hibernate.unproxy(cart.getShop());
+
                     return CartResponse.builder()
+                        .cartId(cart.getId())
                         .shopId(lens.getId())
                         .brandName(lens.getBrandName())
                         .imageUrls(lens.getImageUrls())

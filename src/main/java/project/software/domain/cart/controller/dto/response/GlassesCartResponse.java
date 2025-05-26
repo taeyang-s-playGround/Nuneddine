@@ -8,6 +8,7 @@ import project.software.domain.shop.domain.Glasses;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
 
 import java.util.List;
+import org.hibernate.Hibernate;
 
 @Getter
 @AllArgsConstructor
@@ -21,7 +22,8 @@ public class GlassesCartResponse {
         return new GlassesCartResponse((long) carts.size(),
             carts.stream()
                 .map(cart -> {
-                    Glasses glasses = (Glasses) cart.getShop();
+                    Glasses glasses = (Glasses) Hibernate.unproxy(cart.getShop());
+
                     return CartResponse.builder()
                         .cartId(cart.getId())
                         .shopId(glasses.getId())
