@@ -16,6 +16,7 @@ import project.software.domain.shop.domain.type.lens.LensDateType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @AllArgsConstructor
@@ -59,16 +60,36 @@ public class ShopListResponse {
         List<String> filter = new ArrayList<>();
 
         if (lensColors != null) {
-            filter.addAll(lensColors.stream().map(Enum::name).toList());
+            filter.addAll(
+                lensColors.stream()
+                    .filter(Objects::nonNull)
+                    .map(Enum::name)
+                    .toList()
+            );
         }
         if (lensDateTypes != null) {
-            filter.addAll(lensDateTypes.stream().map(Enum::name).toList());
+            filter.addAll(
+                lensDateTypes.stream()
+                    .filter(Objects::nonNull)
+                    .map(Enum::name)
+                    .toList()
+            );
         }
         if (frameShapes != null) {
-            filter.addAll(frameShapes.stream().map(Enum::name).toList());
+            filter.addAll(
+                frameShapes.stream()
+                    .filter(Objects::nonNull)
+                    .map(Enum::name)
+                    .toList()
+            );
         }
         if (frameMaterials != null) {
-            filter.addAll(frameMaterials.stream().map(Enum::name).toList());
+            filter.addAll(
+                frameMaterials.stream()
+                    .filter(Objects::nonNull)
+                    .map(Enum::name)
+                    .toList()
+            );
         }
         return new ShopListResponse(filter, (long) responses.size(), responses);
     }
