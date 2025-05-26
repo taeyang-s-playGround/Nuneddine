@@ -26,6 +26,8 @@ import project.software.domain.cart.service.GetLensCartService;
 import project.software.domain.shop.controller.dto.response.GlassesListResponse;
 import project.software.domain.shop.controller.dto.response.LensListResponse;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/carts")
@@ -50,18 +52,18 @@ public class CartController {
     }
 
     @PostMapping("/{shop-id}")
-    public void addCart(@PathVariable ("shop-id") Long shopId, @RequestBody ChangeOptionRequest request) {
+    public void addCart(@PathVariable ("shop-id") Long shopId, @RequestBody @Valid ChangeOptionRequest request) {
         addCartService.execute(shopId, request);
     }
 
 
     @PatchMapping("/{cart-id}")
-    public void changeOption(@PathVariable ("cart-id") Long cartId, @RequestBody ChangeOptionRequest request) {
+    public void changeOption(@PathVariable ("cart-id") Long cartId, @RequestBody @Valid ChangeOptionRequest request) {
         changeOptionService.execute(cartId, request);
     }
 
     @DeleteMapping
-    public void deleteCart(@RequestBody DeleteCartsRequest request) {
+    public void deleteCart(@RequestBody @Valid DeleteCartsRequest request) {
         deleteCartService.execute(request);
     }
 }
