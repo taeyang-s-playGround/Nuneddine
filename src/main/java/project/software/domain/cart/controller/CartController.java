@@ -50,7 +50,7 @@ public class CartController {
     }
 
     @PostMapping("/{shop-id}")
-    public void addCart(@PathVariable ("shop-id") Long shopId, ChangeOptionRequest request) {
+    public void addCart(@PathVariable ("shop-id") Long shopId, @RequestBody ChangeOptionRequest request) {
         addCartService.execute(shopId, request);
     }
 
