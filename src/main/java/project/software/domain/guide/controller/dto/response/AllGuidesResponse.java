@@ -11,7 +11,7 @@ import java.util.List;
 public class AllGuidesResponse {
 
     private List<GuideResponse> guideList;
-    private List<String> tipList;
+    private List<TipResponse> tipList;
 
     @Getter
     @AllArgsConstructor
@@ -19,5 +19,12 @@ public class AllGuidesResponse {
         private Long guideId;
         private String title;
         private String imageUrl;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class TipResponse {
+        private String question;
+        private String answer;
     }
 }
