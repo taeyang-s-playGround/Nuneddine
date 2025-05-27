@@ -21,4 +21,6 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
 
     @Query("SELECT l FROM Lens l")
     List<Lens> findAllLens();
+
+    List<Shop> findByGroupIdAndIdNot(String groupId, Long id);
 }

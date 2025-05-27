@@ -2,6 +2,7 @@ package project.software.domain.shop.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +11,7 @@ import project.software.domain.shop.controller.dto.response.GlassesListResponse;
 import project.software.domain.shop.controller.dto.response.LensListResponse;
 import project.software.domain.shop.controller.dto.response.LikedGlassesResponse;
 import project.software.domain.shop.controller.dto.response.LikedLensResponse;
+import project.software.domain.shop.controller.dto.response.detail.ShopDetailResponse;
 import project.software.domain.shop.controller.dto.response.ShopListResponse;
 import project.software.domain.shop.domain.type.glasses.FrameMaterial;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
@@ -18,7 +20,7 @@ import project.software.domain.shop.domain.type.lens.LensDateType;
 import project.software.domain.shop.service.BuyProductService;
 import project.software.domain.shop.service.GetLikedGlassesService;
 import project.software.domain.shop.service.GetLikedLensService;
-import project.software.domain.shop.service.GetAllShopService;
+import project.software.domain.shop.service.GetShopDetailService;
 import project.software.domain.shop.service.GetGlassesListByCategoryService;
 import project.software.domain.shop.service.GetLensListByCategoryService;
 import project.software.domain.shop.service.SearchShopListByCategoryService;
@@ -30,7 +32,7 @@ import java.util.List;
 @RequestMapping("/shops")
 public class ShopController {
 
-    private final GetAllShopService getAllShopService;
+    private final GetShopDetailService getShopDetailService;
     private final BuyProductService buyProductService;
     private final GetLikedLensService getLikedLensService;
     private final GetLikedGlassesService getLikedGlassesService;
@@ -38,9 +40,9 @@ public class ShopController {
     private final GetGlassesListByCategoryService getGlassesListByCategoryService;
     private final SearchShopListByCategoryService searchShopListByCategoryService;
 
-    @GetMapping
-    public ShopListResponse getShopList() {
-        return getAllShopService.execute();
+    @GetMapping("/{shop-id}")
+    public ShopDetailResponse getShopList(@PathVariable("shop-id") Long shopId) {
+        return getShopDetailService.execute(shopId);
     }
 
     @GetMapping("/liked/glasses")
