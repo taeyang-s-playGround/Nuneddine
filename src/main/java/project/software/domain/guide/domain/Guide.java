@@ -28,4 +28,5 @@ public class Guide {
     @Column(columnDefinition = "VARCHAR(256)", nullable = true)
     private String content;
 
+    private String imageUrl;
 }
