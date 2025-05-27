@@ -5,6 +5,5 @@ import project.software.domain.guide.domain.Guide;
 import java.util.List;
 
 public record AllGuidesResponse(List<Guide> guideList) {
-    public record ClassResponse(Long guideId, String title) {}
+    public record ClassResponse(Long guideId, String title, String imageUrl) {}
 }
-

@@ -18,7 +18,7 @@ public class GuideController {
     private final GetAllGuidesService getAllGuidesService;
     private final GuideDetailService guideDetailService;
 
-    @GetMapping
+    @GetMapping("/list")
     public AllGuidesResponse getAllGuides() {
         return getAllGuidesService.execute();
     }
