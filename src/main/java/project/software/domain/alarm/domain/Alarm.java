@@ -47,11 +47,17 @@ public class Alarm {
     @Column(nullable = true)
     private LocalDateTime endTime;
 
+    private Boolean isRepurchased;
+
     public void updateAlarm(String name, LensDateType dateType, LocalDateTime startTime, LocalDateTime endTime) {
         this.name = name;
         this.dateType = dateType;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public void toggleRepurchase() {
+        this.isRepurchased = !this.isRepurchased;
     }
 }
 

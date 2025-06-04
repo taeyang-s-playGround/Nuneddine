@@ -24,6 +24,7 @@ public class AlarmListResponse {
                     .dateType(alarm.getDateType())
                     .startTime(alarm.getStartTime())
                     .endTime(alarm.getEndTime())
+                    .isRepurchased(alarm.getIsRepurchased())
                     .build()
                 ).toList()
         );
@@ -37,5 +38,6 @@ public class AlarmListResponse {
         private final LensDateType dateType;
         private final LocalDateTime startTime;
         private final LocalDateTime endTime;
+        private final Boolean isRepurchased;
     }
 }

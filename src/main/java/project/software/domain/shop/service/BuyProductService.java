@@ -61,6 +61,7 @@ public class BuyProductService {
                     .dateType(lens.getDateType())
                     .startTime(startTime)
                     .endTime(endTime)
+                    .isRepurchased(false)
                     .build()
                 );
             }

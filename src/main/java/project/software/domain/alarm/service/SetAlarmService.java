@@ -24,6 +24,7 @@ public class SetAlarmService {
             .startTime(request.getStartTime())
             .endTime(request.getEndTime())
             .user(user)
+            .isRepurchased(false)
             .build()
         );
     }

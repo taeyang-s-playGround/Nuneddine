@@ -18,6 +18,7 @@ import project.software.domain.alarm.domain.repository.AlarmRepository;
 import project.software.domain.alarm.service.DeleteAlarmService;
 import project.software.domain.alarm.service.GetAllAlarmService;
 import project.software.domain.alarm.service.SetAlarmService;
+import project.software.domain.alarm.service.ToggleRepurchaseService;
 import project.software.domain.alarm.service.UpdateAlarmService;
 
 import javax.validation.Valid;
@@ -31,6 +32,7 @@ public class AlarmController {
     private final GetAllAlarmService getAllAlarmService;
     private final DeleteAlarmService deleteAlarmService;
     private final UpdateAlarmService updateAlarmService;
+    private final ToggleRepurchaseService toggleRepurchaseService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
@@ -54,5 +56,11 @@ public class AlarmController {
     @ResponseStatus(HttpStatus.OK)
     public void updateAlarm(@PathVariable("alarm-id") Long alarmId, @RequestBody @Valid UpdateAlarmRequest request) {
         updateAlarmService.execute(alarmId, request);
+    }
+
+    @PatchMapping("/repurchase-toggle/{alarm-id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void toggleRepurchase(@PathVariable("alarm-id") Long alarmId) {
+        toggleRepurchaseService.execute(alarmId);
     }
 }
