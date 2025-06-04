@@ -17,7 +17,4 @@ public class SetAlarmRequest {
     @NotBlank
     private LensDateType dateType;
 
-    private LocalDateTime startTime;
-
-    private LocalDateTime endTime;
 }
