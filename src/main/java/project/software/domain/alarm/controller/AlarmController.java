@@ -36,7 +36,7 @@ public class AlarmController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void setAlarm(@RequestBody SetAlarmRequest request) {
+    public void setAlarm(@RequestBody @Valid SetAlarmRequest request) {
         setAlarmService.execute(request);
     }
 
@@ -46,16 +46,16 @@ public class AlarmController {
         return getAllAlarmService.execute();
     }
 
-    @DeleteMapping("/{alarm-id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteAlarm(@PathVariable("alarm-id") Long alarmId) {
-        deleteAlarmService.execute(alarmId);
-    }
-
     @PatchMapping("/{alarm-id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateAlarm(@PathVariable("alarm-id") Long alarmId, @RequestBody @Valid UpdateAlarmRequest request) {
         updateAlarmService.execute(alarmId, request);
+    }
+
+    @DeleteMapping("/{alarm-id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAlarm(@PathVariable("alarm-id") Long alarmId) {
+        deleteAlarmService.execute(alarmId);
     }
 
     @PatchMapping("/repurchase-toggle/{alarm-id}")
