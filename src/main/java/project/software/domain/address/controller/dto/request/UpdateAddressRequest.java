@@ -4,26 +4,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
 public class UpdateAddressRequest {
 
-    @NotBlank
+    @NotNull
     private String address;
 
-    @NotBlank
+    @NotNull
     private String deliveryAddressName;
 
-    @NotBlank
+    @NotNull
     private String detailAddress;
 
-    @NotBlank
+    @NotNull
     private String postCode;
 
-    @NotBlank
+    @NotNull
     private String receiver;
 
-    @NotBlank
+    @NotNull
     private String phoneNumber;
 }

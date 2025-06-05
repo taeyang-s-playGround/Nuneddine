@@ -5,16 +5,17 @@ import lombok.NoArgsConstructor;
 import project.software.domain.shop.domain.type.lens.LensDateType;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
 public class SetAlarmRequest {
 
-    @NotBlank
+    @NotNull
     private String name;
 
-    @NotBlank
+    @NotNull
     private LensDateType dateType;
 
 }

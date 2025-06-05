@@ -4,18 +4,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
 public class SignInRequest {
 
-    @NotBlank
+    @NotNull
     private String accountId;
 
-    @NotBlank
+    @NotNull
     private String password;
 
-    @NotBlank
+    @NotNull
     private String deviceToken;
 
 }
