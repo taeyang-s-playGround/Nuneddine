@@ -25,7 +25,7 @@ public class Guide {
     @Column(columnDefinition = "VARCHAR(100)", nullable = true)
     private String title;
 
-    @Column(columnDefinition = "VARCHAR(3000)", nullable = true)
+    @Column(columnDefinition = "TEXT", nullable = true)
     private String content;
 
     private String imageUrl;
