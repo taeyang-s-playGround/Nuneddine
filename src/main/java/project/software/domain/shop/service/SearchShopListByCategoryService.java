@@ -7,8 +7,10 @@ import project.software.domain.auth.facade.UserFacade;
 import project.software.domain.heart.domain.repository.HeartRepository;
 import project.software.domain.shop.controller.dto.response.ShopListResponse;
 import project.software.domain.shop.domain.Glasses;
+import project.software.domain.shop.domain.Keyword;
 import project.software.domain.shop.domain.Lens;
 import project.software.domain.shop.domain.Shop;
+import project.software.domain.shop.domain.repository.KeywordRepository;
 import project.software.domain.shop.domain.repository.ShopRepository;
 import project.software.domain.shop.domain.type.glasses.FrameMaterial;
 import project.software.domain.shop.domain.type.glasses.FrameShape;
@@ -20,12 +22,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class SearchShopListByCategoryService {
 
     private final ShopRepository shopRepository;
     private final UserFacade userFacade;
     private final HeartRepository heartRepository;
+    private final KeywordRepository keywordRepository;
 
     public ShopListResponse execute(String keyword,
                                     List<LensColor> lensColors,
@@ -34,6 +37,11 @@ public class SearchShopListByCategoryService {
                                     List<FrameMaterial> frameMaterials) {
 
         User user = userFacade.getCurrentUser();
+
+        keywordRepository.save(Keyword.builder()
+            .keyword(keyword)
+            .user(user)
+            .build());
 
         List<Shop> shops = shopRepository.findAll();
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import project.software.domain.shop.controller.dto.response.GlassesListResponse;
+import project.software.domain.shop.controller.dto.response.KeywordListResponse;
 import project.software.domain.shop.controller.dto.response.LensListResponse;
 import project.software.domain.shop.controller.dto.response.LikedGlassesResponse;
 import project.software.domain.shop.controller.dto.response.LikedLensResponse;
@@ -18,6 +19,7 @@ import project.software.domain.shop.domain.type.glasses.FrameShape;
 import project.software.domain.shop.domain.type.lens.LensColor;
 import project.software.domain.shop.domain.type.lens.LensDateType;
 import project.software.domain.shop.service.BuyProductService;
+import project.software.domain.shop.service.GetKeywordListService;
 import project.software.domain.shop.service.GetLikedGlassesService;
 import project.software.domain.shop.service.GetLikedLensService;
 import project.software.domain.shop.service.GetShopDetailService;
@@ -39,6 +41,7 @@ public class ShopController {
     private final GetLensListByCategoryService getLensListByCategoryService;
     private final GetGlassesListByCategoryService getGlassesListByCategoryService;
     private final SearchShopListByCategoryService searchShopListByCategoryService;
+    private final GetKeywordListService getKeywordListService;
 
     @GetMapping("/{shop-id}")
     public ShopDetailResponse getShopList(@PathVariable("shop-id") Long shopId) {
@@ -70,6 +73,11 @@ public class ShopController {
         @RequestParam(value = "frame_material", required = false) List<FrameMaterial> frameMaterials
     ) {
         return searchShopListByCategoryService.execute(keyword, lensColors, lensDateTypes, frameShapes, frameMaterials);
+    }
+
+    @GetMapping("/keyword")
+    public KeywordListResponse getKeywordList() {
+        return getKeywordListService.execute();
     }
 
     //메인페이지
