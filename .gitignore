@@ -18,6 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+nuneddine-6efb4-firebase-adminsdk-fbsvc-1ff67fad40.json
 .idea
 *.iws
 *.iml
