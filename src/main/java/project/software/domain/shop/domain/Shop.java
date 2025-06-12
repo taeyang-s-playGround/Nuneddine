@@ -41,7 +41,7 @@ public class Shop {
     @Column(columnDefinition = "VARCHAR(256)", nullable = true)
     private String glassesName;
 
-    @Column(columnDefinition = "VARCHAR(100)", nullable = true)
+    @Column(columnDefinition = "VARCHAR(200)", nullable = true)
     private String descriptionImage;
 
     @Column(nullable = true)
