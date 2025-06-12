@@ -59,5 +59,4 @@ public class Shop {
     private ShopTag shopTag;
 
     private String groupId;
-
 }
