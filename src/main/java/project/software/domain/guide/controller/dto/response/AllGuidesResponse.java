@@ -2,7 +2,6 @@ package project.software.domain.guide.controller.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import project.software.domain.guide.domain.Guide;
 
 import java.util.List;
 
