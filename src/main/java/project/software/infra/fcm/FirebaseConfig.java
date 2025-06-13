@@ -23,14 +23,18 @@ public class FirebaseConfig {
     @PostConstruct
     public void init() {
         try (InputStream inputStream = new URL(path).openStream()) {
-            FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(inputStream))
-                .build();
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseOptions options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(inputStream))
+                    .build();
 
-            FirebaseApp.initializeApp(options);
-            log.info("FirebaseApp initialized successfully.");
+                FirebaseApp.initializeApp(options);
+                log.info("✅ FirebaseApp initialized successfully.");
+            } else {
+                log.info("⚠️ FirebaseApp already initialized.");
+            }
         } catch (Exception e) {
-            log.error("FirebaseApp initialization failed.", e);
+            log.error("🔥 FirebaseApp initialization failed.", e);
         }
     }
 }

@@ -1,5 +1,6 @@
 package project.software.infra.fcm;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.google.firebase.messaging.Message;
@@ -19,7 +20,10 @@ public class FCMService {
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public void sendMessage(String token, String title, String body) throws FirebaseMessagingException {
-        String message = FirebaseMessaging.getInstance().send(Message.builder()
+        FirebaseApp firebaseApp = FirebaseApp.getInstance(); // 명시적으로 인스턴스 확보
+        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance(firebaseApp);
+
+        String message = firebaseMessaging.send(Message.builder()
             .setNotification(Notification.builder()
                 .setTitle(title)
                 .setBody(body)
@@ -27,7 +31,7 @@ public class FCMService {
             .setToken(token)
             .build());
 
-        System.out.println("Sent message: " + message);
+        System.out.println("📨 Sent message: " + message);
     }
 
     public void sendMessageLater(String token, String title, String body, long delayInMinutes) {
@@ -35,7 +39,7 @@ public class FCMService {
             try {
                 sendMessage(token, title, body);
             } catch (FirebaseMessagingException e) {
-                System.err.println("Failed to send message: " + e.getMessage());
+                System.err.println("❌ Failed to send message: " + e.getMessage());
                 e.printStackTrace();
             }
         }, delayInMinutes, TimeUnit.MINUTES);
