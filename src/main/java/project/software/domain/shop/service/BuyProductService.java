@@ -13,6 +13,7 @@ import project.software.domain.purchase_history.domain.repository.PurchaseHistor
 import project.software.domain.shop.domain.Lens;
 import project.software.domain.user.domain.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class BuyProductService {
             purchaseHistoryRepository.save(PurchaseHistory.builder()
                 .count(cart.getCount())
                 .shop(cart.getShop())
+                    .lensPower(cart.getLensPower())
+                    .date(LocalDate.now())
                 .user(user)
                 .build()
             );
