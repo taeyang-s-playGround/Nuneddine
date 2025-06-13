@@ -54,4 +54,4 @@ cloud:
       static: ${STATIC:d}
 
 fcm:
-  path: https://dsm-s3-bucket-jobis.s3.ap-northeast-2.amazonaws.com/EXTENSION_FILE/nuneddine-6efb4-firebase-adminsdk-fbsvc-1ff67fad40.json
+  path: "https://dsm-s3-bucket-jobis.s3.ap-northeast-2.amazonaws.com/EXTENSION_FILE/nuneddine-6efb4-firebase-adminsdk-fbsvc-1ff67fad40.json"
