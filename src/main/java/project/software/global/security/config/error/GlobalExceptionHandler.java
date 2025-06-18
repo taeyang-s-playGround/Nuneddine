@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import project.software.global.security.config.error.exception.CustomException;
 import project.software.global.security.config.error.exception.ErrorCode;
 import project.software.global.security.config.error.exception.ErrorResponse;
+import project.software.global.security.security.jwt.exception.InvalidJwtException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,26 +20,55 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(CustomException.class)
-    public ResponseEntity<ErrorResponse> handleBusinessException(CustomException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        ErrorResponse response = ErrorResponse.of(errorCode);
+    @ExceptionHandler(InvalidJwtException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidJwtException(InvalidJwtException ex) {
+        ErrorCode errorCode = ErrorCode.INVALID_TOKEN;
+        ErrorResponse errorResponse = ErrorResponse.builder()
+            .status(errorCode.getStatus().value())
+            .code("INVALID_TOKEN")
+            .message(errorCode.getMessage())
+            .build();
+        return ResponseEntity.status(errorCode.getStatus()).body(errorResponse);
+    }
 
-        return new ResponseEntity<>(response, errorCode.getStatus());
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<ErrorResponse> handleCustomException(CustomException exception) {
+        ErrorCode errorCode = exception.getErrorCode();
+        ErrorResponse errorResponse = ErrorResponse.builder()
+            .status(errorCode.getStatus().value())
+            .code(errorCode.name())
+            .message(errorCode.getMessage())
+            .build();
+        return ResponseEntity.status(errorCode.getStatus()).body(errorResponse);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, Map<String, String>>> handleBadRequestExceptions(MethodArgumentNotValidException e) {
-        Map<String, String> errors = e.getBindingResult().getFieldErrors()
-                .stream()
-                .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
+    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
+        String errorMessage = ex.getBindingResult()
+            .getFieldErrors()
+            .stream()
+            .map(fieldError -> fieldError.getDefaultMessage())
+            .findFirst()
+            .orElse("Validation error");
 
-        return new ResponseEntity<>(getErrorsMap(errors), HttpStatus.BAD_REQUEST);
+        ErrorResponse errorResponse = ErrorResponse.builder()
+            .status(HttpStatus.BAD_REQUEST.value())
+            .code("INVALID_INPUT")
+            .message(errorMessage)
+            .build();
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    private Map<String, Map<String, String>> getErrorsMap(Map<String, String> errors) {
-        Map<String, Map<String, String>> errorResponse = new HashMap<>();
-        errorResponse.put("errors", errors);
-        return errorResponse;
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception exception) {
+        log.error("Unexpected error occurred", exception);
+        ErrorCode errorCode = ErrorCode.INTERNAL_SERVER_ERROR;
+        ErrorResponse errorResponse = ErrorResponse.builder()
+            .status(errorCode.getStatus().value())
+            .code("INTERNAL_SERVER_ERROR")
+            .message(errorCode.getMessage())
+            .build();
+        return ResponseEntity.status(errorCode.getStatus()).body(errorResponse);
     }
 }
